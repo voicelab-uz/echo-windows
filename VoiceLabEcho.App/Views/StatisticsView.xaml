@@ -1,0 +1,31 @@
+<UserControl x:Class="VoiceLabEcho.App.Views.StatisticsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             mc:Ignorable="d">
+    <Grid Margin="24">
+        <StackPanel>
+            <TextBlock Text="Statistics" FontSize="24" FontWeight="Bold" Margin="0,0,0,24"/>
+
+            <Border Background="White" Padding="24" CornerRadius="8" Margin="0,0,0,16">
+                <StackPanel>
+                    <TextBlock Text="Total Recordings" FontSize="14" Foreground="#666"/>
+                    <TextBlock Text="{Binding Statistics.TotalRecordings}" FontSize="32" FontWeight="Bold"/>
+                </StackPanel>
+            </Border>
+
+            <Border Background="White" Padding="24" CornerRadius="8" Margin="0,0,0,16">
+                <StackPanel>
+                    <TextBlock Text="Total Words" FontSize="14" Foreground="#666"/>
+                    <TextBlock Text="{Binding Statistics.TotalWords}" FontSize="32" FontWeight="Bold"/>
+                </StackPanel>
+            </Border>
+
+            <Border Background="White" Padding="24" CornerRadius="8">
+                <StackPanel>
+                    <TextBlock Text="Average WPM" FontSize="14" Foreground="#666"/>
+                    <TextBlock Text="{Binding Statistics.AverageWordsPerMinute, StringFormat='{}{0:F1}'}" FontSize="32" FontWeight="Bold"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </Grid>
+</UserControl>

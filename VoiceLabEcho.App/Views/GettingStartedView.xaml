@@ -1,0 +1,35 @@
+<UserControl x:Class="VoiceLabEcho.App.Views.GettingStartedView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             mc:Ignorable="d">
+    <Grid Margin="24">
+        <StackPanel>
+            <TextBlock Text="Getting Started" FontSize="24" FontWeight="Bold" Margin="0,0,0,24"/>
+
+            <Border Background="White" Padding="24" CornerRadius="8" Margin="0,0,0,16">
+                <StackPanel>
+                    <TextBlock Text="Welcome to Voice Lab Echo!" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,12"/>
+                    <TextBlock Text="Here's how to get started with voice dictation:" TextWrapping="Wrap" Margin="0,0,0,16"/>
+
+                    <TextBlock Text="1. Grant microphone permissions" Margin="0,0,0,8"/>
+                    <TextBlock Text="2. Configure your keyboard shortcut (default: Ctrl+Alt+Space)" Margin="0,0,0,8"/>
+                    <TextBlock Text="3. Press the shortcut or click 'Start Recording' to begin" Margin="0,0,0,8"/>
+                    <TextBlock Text="4. Speak clearly into your microphone" Margin="0,0,0,8"/>
+                    <TextBlock Text="5. Press the shortcut again or click 'Stop' to transcribe" Margin="0,0,0,16"/>
+
+                    <TextBlock Text="Your transcribed text will be automatically inserted into your active application." TextWrapping="Wrap" Foreground="#666"/>
+                </StackPanel>
+            </Border>
+
+            <Border Background="White" Padding="24" CornerRadius="8">
+                <StackPanel>
+                    <TextBlock Text="Quick Tips" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,12"/>
+                    <TextBlock Text="• Use the vocabulary feature to add custom words" Margin="0,0,0,8"/>
+                    <TextBlock Text="• Create snippets for frequently used phrases" Margin="0,0,0,8"/>
+                    <TextBlock Text="• Access your history to copy or edit past transcriptions" Margin="0,0,0,8"/>
+                    <TextBlock Text="• Pin important notes for quick access" Margin="0,0,0,8"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </Grid>
+</UserControl>

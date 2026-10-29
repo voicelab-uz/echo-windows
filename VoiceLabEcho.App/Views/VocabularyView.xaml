@@ -1,0 +1,213 @@
+<UserControl x:Class="VoiceLabEcho.App.Views.VocabularyView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             mc:Ignorable="d"
+             d:DesignHeight="600" d:DesignWidth="800"
+             Background="White">
+    <Grid Margin="20">
+        <TabControl BorderThickness="0"
+                    Background="Transparent">
+            <TabControl.Resources>
+                <!-- Modern Tab Style -->
+                <Style TargetType="TabItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabItem">
+                                <Border x:Name="Border"
+                                        Background="Transparent"
+                                        BorderThickness="0,0,0,2"
+                                        BorderBrush="Transparent"
+                                        Padding="16,8"
+                                        Margin="0,0,4,0">
+                                    <ContentPresenter x:Name="ContentSite"
+                                                    ContentSource="Header"
+                                                    VerticalAlignment="Center"
+                                                    HorizontalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource PrimaryColor}"/>
+                                        <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+                                        <Setter Property="FontWeight" Value="SemiBold"/>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="Border" Property="Background" Value="{StaticResource HoverBackgroundColor}"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Resources>
+
+            <TabItem Header="Dictionary">
+                <Grid Margin="0,16,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="16"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Add Word Section -->
+                    <Border Grid.Row="0"
+                            Background="#F9F9F9"
+                            BorderBrush="{StaticResource BorderColor}"
+                            BorderThickness="1"
+                            CornerRadius="4"
+                            Padding="12">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox Grid.Column="0"
+                                     Text="{Binding NewWord, UpdateSourceTrigger=PropertyChanged}"
+                                     Margin="0,0,8,0"
+                                     FontSize="14"
+                                     VerticalContentAlignment="Center"
+                                     BorderThickness="0"
+                                     Background="Transparent"/>
+
+                            <Button Grid.Column="1"
+                                    Content="Add Word"
+                                    Style="{StaticResource PrimaryButton}"
+                                    Command="{Binding AddWordCommand}"
+                                    Padding="16,8"/>
+                        </Grid>
+                    </Border>
+
+                    <!-- Word List -->
+                    <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+                        <ItemsControl ItemsSource="{Binding Words}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="White"
+                                            BorderBrush="{StaticResource BorderColor}"
+                                            BorderThickness="1"
+                                            CornerRadius="4"
+                                            Padding="12"
+                                            Margin="0,0,0,8">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0"
+                                                       Text="{Binding Word}"
+                                                       VerticalAlignment="Center"
+                                                       FontSize="14"
+                                                       Foreground="{StaticResource TextPrimaryColor}"/>
+
+                                            <Button Grid.Column="1"
+                                                    Content="Delete"
+                                                    Style="{StaticResource SubtleButton}"
+                                                    Foreground="{StaticResource ErrorColor}"
+                                                    Command="{Binding DataContext.DeleteWordCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                    CommandParameter="{Binding Id}"/>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Snippets">
+                <Grid Margin="0,16,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="16"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Add Snippet Section -->
+                    <Border Grid.Row="0"
+                            Background="#F9F9F9"
+                            BorderBrush="{StaticResource BorderColor}"
+                            BorderThickness="1"
+                            CornerRadius="4"
+                            Padding="12">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox Grid.Column="0"
+                                     Text="{Binding NewSnippetTrigger, UpdateSourceTrigger=PropertyChanged}"
+                                     Margin="0,0,8,0"
+                                     FontSize="14"
+                                     VerticalContentAlignment="Center"
+                                     BorderThickness="0"
+                                     Background="Transparent"/>
+
+                            <TextBox Grid.Column="1"
+                                     Text="{Binding NewSnippetExpansion, UpdateSourceTrigger=PropertyChanged}"
+                                     Margin="0,0,8,0"
+                                     FontSize="14"
+                                     VerticalContentAlignment="Center"
+                                     BorderThickness="0"
+                                     Background="Transparent"/>
+
+                            <Button Grid.Column="2"
+                                    Content="Add Snippet"
+                                    Style="{StaticResource PrimaryButton}"
+                                    Command="{Binding AddSnippetCommand}"
+                                    Padding="16,8"/>
+                        </Grid>
+                    </Border>
+
+                    <!-- Snippet List -->
+                    <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+                        <ItemsControl ItemsSource="{Binding Snippets}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="White"
+                                            BorderBrush="{StaticResource BorderColor}"
+                                            BorderThickness="1"
+                                            CornerRadius="4"
+                                            Padding="12"
+                                            Margin="0,0,0,8">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="200"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0"
+                                                       Text="{Binding Trigger}"
+                                                       FontWeight="SemiBold"
+                                                       VerticalAlignment="Center"
+                                                       FontSize="14"
+                                                       Foreground="{StaticResource TextPrimaryColor}"/>
+
+                                            <TextBlock Grid.Column="1"
+                                                       Text="{Binding Expansion}"
+                                                       VerticalAlignment="Center"
+                                                       Margin="12,0"
+                                                       FontSize="14"
+                                                       Foreground="{StaticResource TextSecondaryColor}"
+                                                       TextTrimming="CharacterEllipsis"/>
+
+                                            <Button Grid.Column="2"
+                                                    Content="Delete"
+                                                    Style="{StaticResource SubtleButton}"
+                                                    Foreground="{StaticResource ErrorColor}"
+                                                    Command="{Binding DataContext.DeleteSnippetCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                    CommandParameter="{Binding Id}"/>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>
