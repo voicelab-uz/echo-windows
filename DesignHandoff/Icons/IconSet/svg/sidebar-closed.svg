@@ -1,0 +1,20 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="512"
+  height="512"
+  viewBox="0 0 512 512"
+  role="img"
+>
+  <title>Sidebar closed</title>
+  <rect
+    x="48"
+    y="104"
+    width="416"
+    height="304"
+    rx="64"
+    fill="none"
+    stroke="#000000"
+    stroke-width="40"
+  />
+  <rect x="128" y="168" width="120" height="176" rx="28" fill="#000000" />
+</svg>

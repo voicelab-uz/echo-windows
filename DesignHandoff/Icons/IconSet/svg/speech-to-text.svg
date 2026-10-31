@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img">
+  <title>Speech to text</title>
+  <g
+    fill="none"
+    stroke="#000000"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="40"
+  >
+    <path d="M316 76h56c46 0 84 38 84 84v212c0 46-38 84-84 84H160c-46 0-84-38-84-84v-92" />
+    <path d="M52 142v48M116 76v162M180 104v108M244 136v54" />
+    <path d="M210 332h170M235 390h115" />
+  </g>
+</svg>
