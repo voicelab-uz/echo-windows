@@ -20,13 +20,14 @@ nothing here is a placeholder unless marked **stand-in**.
 | `Icons/tray-icon-*.ico` | Mac menu-bar mark, idle + recording, light/dark taskbar | Notification area |
 | `Icons/logo.png` | 256 px app icon | Sidebar header next to "Echo" |
 | `Icons/Navigation/` | 6 sidebar icons: plain, `@2x`, `-dark`, `-active-*` | Sidebar |
-| `Icons/IconSet/` | All 38 Mac workspace icons as SVG + PNG 24/48 light/dark, plus Statistics (PNG) | Everything else |
+| `Icons/IconSet/` | All 38 Mac workspace icons as SVG + PNG 24/48 light/dark, plus Statistics (Fluent, MIT) | Everything else |
 | `Icons/ThirdPartyApps/` | App logos shown in the "About you" questionnaire | Onboarding |
 | `Onboarding/Copy/` | All onboarding text, 16 languages (JSON) | Onboarding screens |
-| `Onboarding/*.png` | **Stand-in** step images (the Mac draws these live in code) | Until real art exists |
+| `Onboarding/*.png` | Icon-only **fallbacks**. The real illustrations are drawn in code (§5.1) | Only if code drawing is impossible |
 | `EmptyStates/` | Empty History / Notes / Vocabulary, light + dark | Empty views |
 | `Localization/` | All 677 interface strings × 16 languages | `.resw` / `.resx` |
 | `Reference/VoiceLabCore/` | The Mac's shared Swift core + tests | Port API, auth, text rules |
+| `Reference/Onboarding/` | The Mac's onboarding screens and **illustration drawing code** (SwiftUI) | Port each illustration (§5.1) |
 
 ---
 
@@ -186,6 +187,31 @@ All copy is in `Onboarding/Copy/*.json` (16 languages; `{fn}` = the user's chose
 | 5 | `aboutYou` | Questionnaire (role, apps from `Icons/ThirdPartyApps`, …), Skip available. |
 | 6 | `practice` | "Try it": dictate into a practice field with the real shortcut. |
 
+### 5.1 Onboarding illustrations: draw them in code
+
+The Mac has **no illustration images**. Every onboarding scene is drawn and animated in code, and
+the Windows app must do the same: the AI or developer building it **draws these illustrations
+itself** (XAML shapes, Composition/Win2D, or Lottie authored from this spec), porting the SwiftUI
+in `Reference/Onboarding/`. Use the PNGs in `Onboarding/` only as a last-resort fallback.
+
+Rules for every scene:
+- Vector shapes only, in the brand colours (`Brand/colors.json`, `Onboarding*` tokens). The only
+  bitmaps allowed are the app logo and the questionnaire app logos (`Icons/ThirdPartyApps`).
+- All text comes from `Onboarding/Copy/*.json` in the user's language; mirror for Arabic/Urdu.
+- Scenes are **demonstrations only**: they never record audio, press real keys or open Windows
+  Settings. The one exception is the microphone step, which shows the real microphone level.
+- Loop while visible, pause when hidden. With *Animation effects* off, show one still frame.
+
+| Step | Mac source (port this) | What to draw on Windows |
+|---|---|---|
+| Welcome | `WelcomeDemo.swift` | A laptop (640×400, scales down) showing a desktop with a text field. Below it, a keycap of the user's dictation key plus a caption. Loop: **ready** → key pressed, a floating pill opens at the top of the screen with a 7-bar voice waveform (**listening**) → pill shows working (**processing**) → the sentence appears in the text field (**complete**). Captions are `captions[0…3]` in `WelcomeLanguages.json`. |
+| Access | `PermissionSettingsDemo.swift` | A drawn **Windows Settings** window at *Privacy & security › Microphone*: a pointer moves to "Let desktop apps access your microphone" and switches it on; the highlighted row follows whichever permission is still missing; everything turns green when granted. |
+| Setup › Microphone | `SetupMicrophoneDemo.swift` | 8 rounded bars driven by the **real** microphone level, mirrored around the centre, resting as small dots in silence, on the soft `SetupBackdrop` gradient. |
+| Setup › Shortcut | `SetupKeyChooser.swift`, `SetupKeyboard.swift` | Left: 4 dark keycaps (default key, Right Ctrl, Right Alt, Custom), the chosen one with a blue ring outside its edge. Right half: a **Windows laptop keyboard** (Esc/F-row, Ctrl, Win, Alt, Space, Alt Gr, Ctrl, arrows), black keys in a black well on a dark-grey deck. The chosen key glows blue **around its edge** (350 ms fade), brighter while physically held; the keyboard slides so the key is in view. "Well done" appears under the keycap after the first press. |
+| Setup › Alphabet | `SetupAlphabetChoices.swift` | Two cards: big "O‘" with "G‘ Sh Ch" (current) vs "Ö" with "Ğ Ş Ç" (new), plus a one-line example. Selecting only moves the outline; nothing bounces. |
+| About you | `QuestionnaireIllustration.swift` | One small scene per question: *discovery*, *voice and notes*, *workspace*, *writing*, *meeting apps* (the app logos), *meeting problems* (checklist). |
+| Try it | `TryItPractice.swift` | A real, editable practice text field with live voice-level bars while the user dictates with their own shortcut. |
+
 ---
 
 ## 6. Shortcuts and dictation behaviour
@@ -274,8 +300,8 @@ placeholders: `%d` (number), `%@` (text), `%1$@` positional.
 1. `platform` value for Windows sign-in, and an `os` / `platform` tag on STT so statistics can show
    Windows separately from Mac (today `platform_days` only knows `desktop` and `ios`).
 2. Custom URL scheme `voicelab://` registration on Windows vs loopback redirect.
-3. Final onboarding illustrations for Windows (the Mac draws animated scenes in code; the PNGs in
-   `Onboarding/` are stand-ins built from the icon set).
-4. Statistics icon: the Mac uses Apple's SF Symbol `chart.bar.xaxis`. It is exported here so the
-   apps match, but SF Symbols are licensed for Apple platforms; replace it with the Fluent
-   "Data Bar Vertical" glyph before shipping on Windows if licensing requires.
+3. Onboarding illustrations are drawn in code (§5.1); decide whether to also commission static art
+   for the installer and Microsoft Store listing.
+4. Statistics icon: the Mac uses Apple's SF Symbol `chart.bar.xaxis`, which is licensed for Apple
+   platforms only. Windows uses Microsoft's Fluent **Data Bar Vertical** instead (MIT licence,
+   `Icons/IconSet/svg/statistics.LICENSE-Fluent-MIT.txt`). Every other icon is the Mac's own.

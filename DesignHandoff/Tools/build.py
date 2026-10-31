@@ -25,7 +25,9 @@ def write_ico(dst, pngs):
         offset += len(blob)
     with open(dst, "wb") as f: f.write(header + entries + b"".join(blobs))
 
-if os.path.exists(OUT): shutil.rmtree(OUT)
+# Rebuild the generated folders only; HANDOFF.md, README.md and Tools/ are hand-written.
+for generated in ("Brand", "Icons", "Onboarding", "EmptyStates", "Localization", "Reference"):
+    if os.path.exists(f"{OUT}/{generated}"): shutil.rmtree(f"{OUT}/{generated}")
 mk(OUT)
 
 # ---------- Brand: colours, logo, fonts ----------
@@ -76,10 +78,11 @@ svgs = {os.path.basename(p): p for p in glob.glob(f"{ASSETS}/WorkspaceIcon-*.ima
 nav_map = {"home": "home.svg", "statistics": None, "vocabulary": "knowledge.svg",
            "notes": "notes.svg", "getting-started": "info.svg", "settings": "settings.svg"}
 nav = mk(f"{icons}/Navigation")
+FLUENT_STATS = f"{T}/fluent/data-bar-vertical-24.svg"
 def draw(file, dst, size, color):
-    # Statistics on the Mac is the SF Symbol "chart.bar.xaxis" (WorkspaceAssetIcon.swift).
-    if file is None: run(f"{T}/sfsym", "chart.bar.xaxis", dst, str(size), color)
-    else: svg(svgs[file], dst, size, color)
+    # The Mac uses Apple's SF Symbol "chart.bar.xaxis", which is licensed for Apple platforms
+    # only. Windows gets Microsoft's Fluent "Data Bar Vertical" (MIT), the closest match.
+    svg(FLUENT_STATS if file is None else svgs[file], dst, size, color)
 for name, file in nav_map.items():
     for theme, color in (("light", INK_LIGHT), ("dark", INK_DARK)):
         draw(file, f"{nav}/{name}-{theme}.png", 24, color)
@@ -97,6 +100,8 @@ for file, path in sorted(svgs.items()):
     for theme, color in (("light", INK_LIGHT), ("dark", INK_DARK)):
         svg(path, f"{full}/png-{theme}/{stem}-24.png", 24, color)
         svg(path, f"{full}/png-{theme}/{stem}-48.png", 48, color)
+shutil.copy(FLUENT_STATS, f"{full}/svg/statistics.svg")
+shutil.copy(f"{T}/fluent/LICENSE", f"{full}/svg/statistics.LICENSE-Fluent-MIT.txt")
 for theme, color in (("light", INK_LIGHT), ("dark", INK_DARK)):
     draw(None, f"{full}/png-{theme}/statistics-24.png", 24, color)
     draw(None, f"{full}/png-{theme}/statistics-48.png", 48, color)
@@ -147,6 +152,13 @@ for lang, rows in per.items():
 ref = mk(f"{OUT}/Reference")
 shutil.copytree(f"{MAC}/Packages/VoiceLabCore/Sources", f"{ref}/VoiceLabCore/Sources")
 shutil.copytree(f"{MAC}/Packages/VoiceLabCore/Tests", f"{ref}/VoiceLabCore/Tests")
+# The Mac draws every onboarding illustration in code (SwiftUI). Ship that code so the
+# Windows app can draw the same scenes rather than using static pictures.
+onb_src = mk(f"{ref}/Onboarding")
+for f in glob.glob(f"{MAC}/Voicelab/Features/Onboarding/Experience/*.swift"):
+    shutil.copy(f, onb_src)
+for f in ("ProductionOnboardingView.swift", "OnboardingJourney.swift"):
+    shutil.copy(f"{MAC}/Voicelab/Features/Onboarding/{f}", onb_src)
 
 print(json.dumps({"colors": len(colors), "icons": len(svgs), "strings": len(table),
                   "languages": sorted(per)}, ensure_ascii=False))

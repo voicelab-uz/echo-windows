@@ -23,13 +23,16 @@ DesignHandoff/
 │   └── ThirdPartyApps/        app logos used in the onboarding questionnaire
 ├── Onboarding/
 │   ├── Copy/                  onboarding text, 16 languages (JSON)
-│   └── *.png                  stand-in step images (welcome, sign-in, microphone, keyboard, complete)
+│   └── *.png                  fallbacks only — illustrations are drawn in code (HANDOFF.md §5.1)
 ├── EmptyStates/               no-history, no-notes, no-vocabulary (light + -dark)
 ├── Localization/              strings.json + by-language/*.json (677 strings × 16 languages)
 ├── Reference/VoiceLabCore/    the Mac's shared Swift core and tests (API, auth, text rules)
+├── Reference/Onboarding/      the Mac's onboarding screens + illustration drawing code
 └── Tools/                     scripts that regenerate these assets from the Mac app
 ```
 
-All icons are the ones the Mac app uses: its SVG icon set, its menu-bar mark (for the tray) and the
-Apple symbol it uses for Statistics. When the Mac assets change, regenerate them with
-[Tools/](Tools/README.md).
+All icons are the ones the Mac app uses (its SVG icon set and its menu-bar mark for the tray), except
+Statistics: the Mac's Apple-only symbol is replaced by Microsoft's Fluent "Data Bar Vertical" (MIT).
+Onboarding illustrations are not images: draw them in code from the Mac source (HANDOFF.md §5.1).
+
+When the Mac assets change, regenerate them with [Tools/](Tools/README.md).
