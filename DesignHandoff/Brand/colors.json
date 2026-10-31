@@ -1,0 +1,70 @@
+{
+  "OnboardingBorder": {
+    "light": "#E5E5E5",
+    "dark": "#353535"
+  },
+  "OnboardingCanvas": {
+    "light": "#FFFFFF",
+    "dark": "#1A1A1D"
+  },
+  "OnboardingCard": {
+    "light": "#FFFFFF",
+    "dark": "#202129"
+  },
+  "OnboardingInk": {
+    "light": "#1C1C21",
+    "dark": "#E8E8ED"
+  },
+  "OnboardingKeyBorder": {
+    "light": "#A3A3A3",
+    "dark": "#808080"
+  },
+  "OnboardingLavender": {
+    "light": "#F0EDFA",
+    "dark": "#2E2B3B"
+  },
+  "OnboardingMuted": {
+    "light": "#6E6E75",
+    "dark": "#A6A6B0"
+  },
+  "OnboardingPanel": {
+    "light": "#EEEEF6",
+    "dark": "#2A2C37"
+  },
+  "OnboardingSuccess": {
+    "light": "#16A34A",
+    "dark": "#22C55E"
+  },
+  "OnboardingSurface": {
+    "light": "#F6F6F6",
+    "dark": "#26262B"
+  },
+  "OnboardingWarm": {
+    "light": "#F7F5F0",
+    "dark": "#292629"
+  },
+  "VoicelabAccent": {
+    "light": "#3D63F2",
+    "dark": "#7394FF"
+  },
+  "WorkspaceAccent": {
+    "light": "#1A1A1A",
+    "dark": "#E9E8E1"
+  },
+  "WorkspaceCanvas": {
+    "light": "#FCFCFB",
+    "dark": "#1A1A1A"
+  },
+  "WorkspaceSelection": {
+    "light": "#EEEBE3",
+    "dark": "#30302F"
+  },
+  "WorkspaceSidebar": {
+    "light": "#F5F4F0",
+    "dark": "#202020"
+  },
+  "WorkspaceSurface": {
+    "light": "#F5F4F0",
+    "dark": "#202020"
+  }
+}
