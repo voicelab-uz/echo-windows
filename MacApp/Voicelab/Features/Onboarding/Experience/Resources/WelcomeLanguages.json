@@ -1,0 +1,530 @@
+{
+  "en": {
+    "stages": [
+      "Welcome",
+      "Access",
+      "Setup",
+      "Sign In",
+      "About you",
+      "Try it"
+    ],
+    "heading": "You speak.\nEcho writes.",
+    "subtitle": "Turn your voice into words.\nIn any app you work in.",
+    "start": "Get started",
+    "language": "Language",
+    "messageTitle": "New message",
+    "recipient": "Aisha",
+    "sentence": "Hey Aisha,\ncould we move our meeting to 10 tomorrow?",
+    "placeholder": "Write a message…",
+    "ready": "Ready when you are",
+    "done": "Done",
+    "captions": [
+      "One press to begin.",
+      "Just say what’s on your mind.",
+      "Press again. Echo writes it down.",
+      "Your thought. Ready to send."
+    ],
+    "demoSteps": [
+      "Press",
+      "Speak",
+      "Press again"
+    ],
+    "listening": "Listening",
+    "processing": "Writing…"
+  },
+  "uz": {
+    "stages": [
+      "Boshlash",
+      "Ruxsatlar",
+      "Sozlash",
+      "Kirish",
+      "Siz haqingizda",
+      "Sinash"
+    ],
+    "heading": "Siz gapiring.\nEcho yozadi.",
+    "subtitle": "Fikrlaringizni istalgan ilovada\novoz bilan yozing.",
+    "start": "Boshlash",
+    "language": "Ilova tili",
+    "messageTitle": "Yangi xabar",
+    "recipient": "Aisha",
+    "sentence": "Salom Aisha,\nuchrashuvni ertaga soat 10 ga koʻchirsak boʻladimi?",
+    "placeholder": "Xabar yozing…",
+    "ready": "Boshlashga tayyor",
+    "done": "Matn tayyor",
+    "captions": [
+      "Bir marta bosing.",
+      "Shunchaki gapiring.",
+      "Yana bosing. Echo yozadi.",
+      "Fikringiz — tayyor matn."
+    ],
+    "demoSteps": [
+      "Bosing",
+      "Gapiring",
+      "Yana bosing"
+    ],
+    "listening": "Tinglayapman",
+    "processing": "Matnga aylantirish"
+  },
+  "ru": {
+    "stages": [
+      "Начало",
+      "Доступ",
+      "Настройка",
+      "Вход",
+      "О вас",
+      "Практика"
+    ],
+    "heading": "Вы говорите.\nEcho пишет.",
+    "subtitle": "Превращайте речь в текст.\nВ любом приложении.",
+    "start": "Начать",
+    "language": "Язык",
+    "messageTitle": "Новое сообщение",
+    "recipient": "Аиша",
+    "sentence": "Привет, Аиша!\nПеренесём встречу на завтра, на 10?",
+    "placeholder": "Напишите сообщение…",
+    "ready": "Можно начинать",
+    "done": "Готово",
+    "captions": [
+      "Нажмите, чтобы начать.",
+      "Просто скажите, что думаете.",
+      "Нажмите ещё раз. Echo запишет.",
+      "Ваша мысль. Можно отправлять."
+    ],
+    "demoSteps": [
+      "Нажмите",
+      "Говорите",
+      "Ещё раз"
+    ],
+    "listening": "Слушаю",
+    "processing": "Записываю…"
+  },
+  "de": {
+    "stages": [
+      "Willkommen",
+      "Zugriff",
+      "Einrichten",
+      "Anmelden",
+      "Über dich",
+      "Testen"
+    ],
+    "heading": "Du sprichst.\nEcho schreibt.",
+    "subtitle": "Deine Stimme wird zu Text.\nIn jeder App.",
+    "start": "Loslegen",
+    "language": "Sprache",
+    "messageTitle": "Neue Nachricht",
+    "recipient": "Aisha",
+    "sentence": "Hallo Aisha,\nkönnen wir unser Treffen auf morgen um 10 verschieben?",
+    "placeholder": "Nachricht schreiben…",
+    "ready": "Bereit, wenn du es bist",
+    "done": "Fertig",
+    "captions": [
+      "Ein Tastendruck zum Starten.",
+      "Sag einfach, was du denkst.",
+      "Noch mal drücken. Echo schreibt.",
+      "Dein Gedanke. Bereit zum Senden."
+    ],
+    "demoSteps": [
+      "Drücken",
+      "Sprechen",
+      "Noch mal"
+    ],
+    "listening": "Ich höre zu",
+    "processing": "Schreibe…"
+  },
+  "ko": {
+    "stages": [
+      "환영",
+      "권한",
+      "설정",
+      "로그인",
+      "사용자 소개",
+      "체험"
+    ],
+    "heading": "말하면,\nEcho가 써요.",
+    "subtitle": "어떤 앱에서든\n목소리를 글로 바꿔 보세요.",
+    "start": "시작하기",
+    "language": "언어",
+    "messageTitle": "새 메시지",
+    "recipient": "아이샤",
+    "sentence": "아이샤, 안녕하세요.\n회의를 내일 10시로 옮겨도 될까요?",
+    "placeholder": "메시지를 입력하세요…",
+    "ready": "준비됐어요",
+    "done": "완료",
+    "captions": [
+      "한 번 눌러 시작하세요.",
+      "생각을 편하게 말해 보세요.",
+      "다시 누르면 Echo가 써 줘요.",
+      "생각이 글로. 이제 보내세요."
+    ],
+    "demoSteps": [
+      "누르기",
+      "말하기",
+      "다시 누르기"
+    ],
+    "listening": "듣고 있어요",
+    "processing": "작성 중…"
+  },
+  "zh-Hans": {
+    "stages": [
+      "欢迎",
+      "权限",
+      "设置",
+      "登录",
+      "关于你",
+      "试一试"
+    ],
+    "heading": "你来说。\nEcho 来写。",
+    "subtitle": "在任何应用中，\n将你的声音变成文字。",
+    "start": "开始使用",
+    "language": "语言",
+    "messageTitle": "新消息",
+    "recipient": "阿伊莎",
+    "sentence": "阿伊莎，你好，\n我们可以把会议改到明天十点吗？",
+    "placeholder": "输入消息…",
+    "ready": "随时可以开始",
+    "done": "完成",
+    "captions": [
+      "按一下，即可开始。",
+      "把心里的想法说出来。",
+      "再按一下，Echo 帮你写下来。",
+      "想法已成文字，随时发送。"
+    ],
+    "demoSteps": [
+      "按一下",
+      "说话",
+      "再按一下"
+    ],
+    "listening": "正在聆听",
+    "processing": "正在写入…"
+  },
+  "hi": {
+    "stages": [
+      "स्वागत",
+      "अनुमतियाँ",
+      "सेटअप",
+      "साइन इन",
+      "आपके बारे में",
+      "आज़माएँ"
+    ],
+    "heading": "आप बोलें।\nEcho लिखे।",
+    "subtitle": "किसी भी ऐप में\nअपनी आवाज़ को शब्दों में बदलें।",
+    "start": "शुरू करें",
+    "language": "भाषा",
+    "messageTitle": "नया संदेश",
+    "recipient": "आयशा",
+    "sentence": "नमस्ते आयशा,\nक्या हम अपनी मीटिंग कल 10 बजे कर सकते हैं?",
+    "placeholder": "संदेश लिखें…",
+    "ready": "जब आप तैयार हों",
+    "done": "हो गया",
+    "captions": [
+      "शुरू करने के लिए एक बार दबाएँ।",
+      "बस अपने मन की बात कहें।",
+      "फिर दबाएँ। Echo लिख देगा।",
+      "आपकी बात। भेजने के लिए तैयार।"
+    ],
+    "demoSteps": [
+      "दबाएँ",
+      "बोलें",
+      "फिर दबाएँ"
+    ],
+    "listening": "सुन रहा हूँ",
+    "processing": "लिख रहा हूँ…"
+  },
+  "es": {
+    "stages": [
+      "Inicio",
+      "Permisos",
+      "Configurar",
+      "Iniciar sesión",
+      "Sobre ti",
+      "Probar"
+    ],
+    "heading": "Tú hablas.\nEcho escribe.",
+    "subtitle": "Convierte tu voz en palabras.\nEn cualquier aplicación.",
+    "start": "Empezar",
+    "language": "Idioma",
+    "messageTitle": "Nuevo mensaje",
+    "recipient": "Aisha",
+    "sentence": "Hola, Aisha:\n¿podemos pasar la reunión a mañana a las 10?",
+    "placeholder": "Escribe un mensaje…",
+    "ready": "Todo listo para empezar",
+    "done": "Listo",
+    "captions": [
+      "Pulsa una vez para empezar.",
+      "Solo di lo que tienes en mente.",
+      "Pulsa de nuevo. Echo lo escribe.",
+      "Tu idea. Lista para enviar."
+    ],
+    "demoSteps": [
+      "Pulsa",
+      "Habla",
+      "Pulsa de nuevo"
+    ],
+    "listening": "Escuchando",
+    "processing": "Escribiendo…"
+  },
+  "ar": {
+    "stages": [
+      "مرحبًا",
+      "الأذونات",
+      "الإعداد",
+      "تسجيل الدخول",
+      "نبذة عنك",
+      "جرّب"
+    ],
+    "heading": "أنت تتكلم.\nEcho يكتب.",
+    "subtitle": "حوّل صوتك إلى كلمات.\nفي أي تطبيق تستخدمه.",
+    "start": "ابدأ الآن",
+    "language": "اللغة",
+    "messageTitle": "رسالة جديدة",
+    "recipient": "عائشة",
+    "sentence": "مرحبًا عائشة،\nهل يمكننا نقل الاجتماع إلى العاشرة غدًا؟",
+    "placeholder": "اكتب رسالة…",
+    "ready": "جاهز عندما تكون مستعدًا",
+    "done": "تم",
+    "captions": [
+      "اضغط مرة واحدة للبدء.",
+      "قل ببساطة ما يدور في ذهنك.",
+      "اضغط مجددًا. سيكتب Echo كلامك.",
+      "فكرتك أصبحت نصًا جاهزًا للإرسال."
+    ],
+    "demoSteps": [
+      "اضغط",
+      "تكلّم",
+      "اضغط مجددًا"
+    ],
+    "listening": "أستمع",
+    "processing": "جارٍ الكتابة…"
+  },
+  "fr": {
+    "stages": [
+      "Bienvenue",
+      "Accès",
+      "Réglages",
+      "Connexion",
+      "À propos de vous",
+      "Essai"
+    ],
+    "heading": "Vous parlez.\nEcho écrit.",
+    "subtitle": "Votre voix devient du texte.\nDans toutes vos applications.",
+    "start": "Commencer",
+    "language": "Langue",
+    "messageTitle": "Nouveau message",
+    "recipient": "Aisha",
+    "sentence": "Salut Aisha,\non peut décaler notre réunion à demain à 10 h ?",
+    "placeholder": "Écrivez un message…",
+    "ready": "À vous de jouer",
+    "done": "Terminé",
+    "captions": [
+      "Un appui pour commencer.",
+      "Dites simplement ce que vous pensez.",
+      "Appuyez encore. Echo écrit.",
+      "Votre idée. Prête à envoyer."
+    ],
+    "demoSteps": [
+      "Appuyez",
+      "Parlez",
+      "Encore un appui"
+    ],
+    "listening": "À l’écoute",
+    "processing": "Rédaction…"
+  },
+  "bn": {
+    "stages": [
+      "স্বাগতম",
+      "অনুমতি",
+      "সেটআপ",
+      "সাইন ইন",
+      "আপনার সম্পর্কে",
+      "চেষ্টা করুন"
+    ],
+    "heading": "আপনি বলুন।\nEcho লিখবে।",
+    "subtitle": "যেকোনো অ্যাপে\nআপনার কথাকে লেখায় রূপ দিন।",
+    "start": "শুরু করুন",
+    "language": "ভাষা",
+    "messageTitle": "নতুন বার্তা",
+    "recipient": "আয়েশা",
+    "sentence": "হ্যালো আয়েশা,\nআমাদের মিটিংটা কি আগামীকাল সকাল ১০টায় করা যাবে?",
+    "placeholder": "একটি বার্তা লিখুন…",
+    "ready": "আপনি প্রস্তুত হলেই শুরু",
+    "done": "হয়ে গেছে",
+    "captions": [
+      "শুরু করতে একবার চাপুন।",
+      "মনের কথাটা বলে ফেলুন।",
+      "আবার চাপুন। Echo লিখে দেবে।",
+      "আপনার কথা। পাঠানোর জন্য প্রস্তুত।"
+    ],
+    "demoSteps": [
+      "চাপুন",
+      "বলুন",
+      "আবার চাপুন"
+    ],
+    "listening": "শুনছি",
+    "processing": "লিখছি…"
+  },
+  "pt": {
+    "stages": [
+      "Início",
+      "Permissões",
+      "Configurar",
+      "Entrar",
+      "Sobre você",
+      "Testar"
+    ],
+    "heading": "Você fala.\nEcho escreve.",
+    "subtitle": "Transforme sua voz em palavras.\nEm qualquer aplicativo.",
+    "start": "Começar",
+    "language": "Idioma",
+    "messageTitle": "Nova mensagem",
+    "recipient": "Aisha",
+    "sentence": "Oi, Aisha,\npodemos mudar nossa reunião para amanhã às 10?",
+    "placeholder": "Escreva uma mensagem…",
+    "ready": "Tudo pronto para começar",
+    "done": "Pronto",
+    "captions": [
+      "Pressione uma vez para começar.",
+      "É só dizer o que está pensando.",
+      "Pressione de novo. Echo escreve.",
+      "Sua ideia. Pronta para enviar."
+    ],
+    "demoSteps": [
+      "Pressione",
+      "Fale",
+      "De novo"
+    ],
+    "listening": "Ouvindo",
+    "processing": "Escrevendo…"
+  },
+  "id": {
+    "stages": [
+      "Mulai",
+      "Izin",
+      "Atur",
+      "Masuk",
+      "Tentang kamu",
+      "Coba"
+    ],
+    "heading": "Anda bicara.\nEcho menulis.",
+    "subtitle": "Ubah suara Anda menjadi tulisan.\nDi aplikasi apa pun.",
+    "start": "Mulai",
+    "language": "Bahasa",
+    "messageTitle": "Pesan baru",
+    "recipient": "Aisha",
+    "sentence": "Hai Aisha,\nbisa kita pindahkan rapatnya ke besok jam 10?",
+    "placeholder": "Tulis pesan…",
+    "ready": "Siap kapan pun Anda siap",
+    "done": "Selesai",
+    "captions": [
+      "Tekan sekali untuk mulai.",
+      "Katakan saja yang Anda pikirkan.",
+      "Tekan lagi. Echo menuliskannya.",
+      "Pikiran Anda. Siap dikirim."
+    ],
+    "demoSteps": [
+      "Tekan",
+      "Bicara",
+      "Tekan lagi"
+    ],
+    "listening": "Mendengarkan",
+    "processing": "Menulis…"
+  },
+  "ur": {
+    "stages": [
+      "خوش آمدید",
+      "اجازتیں",
+      "ترتیب",
+      "سائن ان",
+      "آپ کے بارے میں",
+      "آزمائیں"
+    ],
+    "heading": "آپ بولیں۔\nEcho لکھے۔",
+    "subtitle": "کسی بھی ایپ میں\nاپنی آواز کو تحریر میں بدلیں۔",
+    "start": "شروع کریں",
+    "language": "زبان",
+    "messageTitle": "نیا پیغام",
+    "recipient": "عائشہ",
+    "sentence": "سلام عائشہ،\nکیا ہم اپنی میٹنگ کل دس بجے کر سکتے ہیں؟",
+    "placeholder": "پیغام لکھیں…",
+    "ready": "جب آپ تیار ہوں",
+    "done": "مکمل",
+    "captions": [
+      "شروع کرنے کے لیے ایک بار دبائیں۔",
+      "بس اپنے دل کی بات کہیں۔",
+      "دوبارہ دبائیں۔ Echo لکھ دے گا۔",
+      "آپ کی بات۔ بھیجنے کے لیے تیار۔"
+    ],
+    "demoSteps": [
+      "دبائیں",
+      "بولیں",
+      "پھر دبائیں"
+    ],
+    "listening": "سن رہا ہوں",
+    "processing": "لکھ رہا ہوں…"
+  },
+  "ja": {
+    "stages": [
+      "ようこそ",
+      "アクセス",
+      "設定",
+      "ログイン",
+      "あなたについて",
+      "体験"
+    ],
+    "heading": "あなたが話す。\nEcho が書く。",
+    "subtitle": "どのアプリでも、\nあなたの声を文字に。",
+    "start": "はじめる",
+    "language": "言語",
+    "messageTitle": "新しいメッセージ",
+    "recipient": "アイシャ",
+    "sentence": "アイシャさん、\n打ち合わせを明日の10時に変更できますか？",
+    "placeholder": "メッセージを入力…",
+    "ready": "いつでもどうぞ",
+    "done": "完了",
+    "captions": [
+      "一度押してスタート。",
+      "思いついたことを話すだけ。",
+      "もう一度押すと Echo が書きます。",
+      "あなたの思いを、送れる文章に。"
+    ],
+    "demoSteps": [
+      "押す",
+      "話す",
+      "もう一度押す"
+    ],
+    "listening": "聞いています",
+    "processing": "入力中…"
+  },
+  "pcm": {
+    "stages": [
+      "Welcome",
+      "Allow",
+      "Set up",
+      "Sign In",
+      "About you",
+      "Try am"
+    ],
+    "heading": "You talk.\nEcho go write.",
+    "subtitle": "Turn wetin you talk to text.\nFor any app wey you dey use.",
+    "start": "Make we start",
+    "language": "Language",
+    "messageTitle": "New message",
+    "recipient": "Aisha",
+    "sentence": "How far Aisha,\nwe fit move our meeting go tomorrow by 10?",
+    "placeholder": "Write message…",
+    "ready": "Ready when you ready",
+    "done": "E don ready",
+    "captions": [
+      "Press once make you start.",
+      "Just talk wetin dey your mind.",
+      "Press again. Echo go write am.",
+      "Your idea don ready to send."
+    ],
+    "demoSteps": [
+      "Press",
+      "Talk",
+      "Press again"
+    ],
+    "listening": "I dey listen",
+    "processing": "I dey write…"
+  }
+}

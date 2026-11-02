@@ -1,0 +1,684 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A90000000000000000000202 /* EchoBillingModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90000000000000000000102 /* EchoBillingModels.swift */; };
+		A90000000000000000000201 /* EchoBillingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90000000000000000000101 /* EchoBillingView.swift */; };
+        A80000000000000000000001 /* KeyboardAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80000000000000000000002 /* KeyboardAppearance.swift */; };
+        A70000000000000000000001 /* NativeKeySurface.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70000000000000000000002 /* NativeKeySurface.swift */; };
+        A60000000000000000000001 /* UzbekTranscriptScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60000000000000000000002 /* UzbekTranscriptScript.swift */; };
+        A50000000000000000000001 /* Keyboard Assets in Resources */ = {isa = PBXBuildFile; fileRef = A50000000000000000000002 /* Assets.xcassets */; };
+        A40000000000000000000001 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = A40000000000000000000002 /* GoogleSignIn */; };
+        A40000000000000000000003 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A40000000000000000000004 /* GoogleSignInSwift */; };
+        A30000000000000000000201 /* EchoProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30000000000000000000101 /* EchoProfileView.swift */; };
+        A20000000000000000000201 /* UzbekKeyboardDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000101 /* UzbekKeyboardDictionary.swift */; };
+		A10000000000000000000201 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000101 /* OnboardingView.swift */; };
+		A10000000000000000000202 /* EchoAuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000102 /* EchoAuthClient.swift */; };
+		A10000000000000000000203 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000103 /* Assets.xcassets */; };
+		181441557B050AAC96BDBBCD /* KeyboardSessionHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F48F994BA3B75A543F726A0 /* KeyboardSessionHost.swift */; };
+		22BC09BB43150FAE475A1396 /* VoiceBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5268A3C9227C8F60A37F9097 /* VoiceBridge.swift */; };
+		2893984CBEBE7EA563194EFD /* VoiceLabClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74232498C8702B92413FAB93 /* VoiceLabClient.swift */; };
+		2FC1B2A6428E15AB5BF26DBF /* InputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF3326C2B17A1C16519BFB /* InputBar.swift */; };
+		38B4C873DBE1A0D38CC9DE17 /* KeyboardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB10F3ABCD2161DDABE8E8AD /* KeyboardModel.swift */; };
+		70F7A9AF98E83A6153919A05 /* DemoSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70C58E107A3F407EB30D41E /* DemoSpeech.swift */; };
+		7ECB1E1AECF0D303AF2126C9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0E4A886680AF3DA805AB67 /* ContentView.swift */; };
+		8459FE87086708576E8B18A5 /* VoiceInputApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B708BAA8F982A05876C7CD1 /* VoiceInputApp.swift */; };
+		8F0BEAB7F4EDE39667044A07 /* WaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D73FC532638992AB4DC69C /* WaveformView.swift */; };
+		93D932CF199E198EBB80509D /* VoiceTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9E844E45626910E0768DCF /* VoiceTextView.swift */; };
+		A1009A00EC6B17007AD40D74 /* EchoKeyboard.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B4B73C46B4F5865F163AB561 /* EchoKeyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AF01C9EB2E4198E4915BDB5B /* KeyboardSessionBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B152C3A154D1EB0D1355A7 /* KeyboardSessionBanner.swift */; };
+		C4F2C809078ED87BAD2BA23F /* ComposerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C0C15F55F687814E10E663 /* ComposerModel.swift */; };
+		DF480663839162B5E1679298 /* SpeechSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8EF19A0404D08A74928881 /* SpeechSession.swift */; };
+		E7D3F6BBCC01215C3346E534 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC83DAC30CA15057A11974F /* KeyboardViewController.swift */; };
+		FA11FCE45051CF3CF9480505 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14904248AA3F27ABB4112B89 /* KeyboardView.swift */; };
+		FAB215321D8CB70888BF3A57 /* VoiceBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5268A3C9227C8F60A37F9097 /* VoiceBridge.swift */; };
+		F10000000000000000000065 /* Live Activity source */ = {isa = PBXBuildFile; fileRef = F10000000000000000000001; };
+		F10000000000000000000066 /* Live Activity source */ = {isa = PBXBuildFile; fileRef = F10000000000000000000002; };
+		F10000000000000000000067 /* Live Activity source */ = {isa = PBXBuildFile; fileRef = F10000000000000000000003; };
+		F100000000000000000000C9 /* Live Activity source */ = {isa = PBXBuildFile; fileRef = F10000000000000000000001; };
+		F100000000000000000000CA /* Live Activity source */ = {isa = PBXBuildFile; fileRef = F10000000000000000000002; };
+		F100000000000000000000CB /* Live Activity source */ = {isa = PBXBuildFile; fileRef = F10000000000000000000004; };
+		F100000000000000000000CC /* Live Activity source */ = {isa = PBXBuildFile; fileRef = 5268A3C9227C8F60A37F9097; };
+		F100000000000000000000CD /* EchoLiveActivity.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F10000000000000000000007; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7B4A9852BF3B8F71B61C78E6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B79158C72F4ABF96A4ADB0B0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 72C3F8F7EEB8F12677574608;
+			remoteInfo = EchoKeyboard;
+		};
+		F10000000000000000000192 = {isa = PBXContainerItemProxy; containerPortal = B79158C72F4ABF96A4ADB0B0; proxyType = 1; remoteGlobalIDString = F10000000000000000000190; remoteInfo = EchoLiveActivity; };
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		669F93732BBE08AE91CD6700 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F100000000000000000000CD /* EchoLiveActivity.appex */,
+				A1009A00EC6B17007AD40D74 /* EchoKeyboard.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		A90000000000000000000102 /* EchoBillingModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EchoBillingModels.swift; sourceTree = "<group>"; };
+		A90000000000000000000101 /* EchoBillingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EchoBillingView.swift; sourceTree = "<group>"; };
+        A80000000000000000000002 /* KeyboardAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAppearance.swift; sourceTree = "<group>"; };
+        A70000000000000000000002 /* NativeKeySurface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeKeySurface.swift; sourceTree = "<group>"; };
+        A60000000000000000000002 /* UzbekTranscriptScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UzbekTranscriptScript.swift; sourceTree = "<group>"; };
+        A50000000000000000000002 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+        A30000000000000000000101 /* EchoProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EchoProfileView.swift; sourceTree = "<group>"; };
+        A20000000000000000000101 /* UzbekKeyboardDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UzbekKeyboardDictionary.swift; sourceTree = "<group>"; };
+		A10000000000000000000101 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		A10000000000000000000102 /* EchoAuthClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EchoAuthClient.swift; sourceTree = "<group>"; };
+		A10000000000000000000103 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0B708BAA8F982A05876C7CD1 /* VoiceInputApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceInputApp.swift; sourceTree = "<group>"; };
+		0F48F994BA3B75A543F726A0 /* KeyboardSessionHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardSessionHost.swift; sourceTree = "<group>"; };
+		14904248AA3F27ABB4112B89 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
+		4731E6D03EE739D36394D349 /* VoiceInput.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VoiceInput.entitlements; sourceTree = "<group>"; };
+		49DF3326C2B17A1C16519BFB /* InputBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBar.swift; sourceTree = "<group>"; };
+		5268A3C9227C8F60A37F9097 /* VoiceBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceBridge.swift; sourceTree = "<group>"; };
+		5F9E844E45626910E0768DCF /* VoiceTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceTextView.swift; sourceTree = "<group>"; };
+		69B152C3A154D1EB0D1355A7 /* KeyboardSessionBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardSessionBanner.swift; sourceTree = "<group>"; };
+		6E10E4D59A70FD7A09B5E043 /* App.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = App.xcconfig; sourceTree = "<group>"; };
+		74232498C8702B92413FAB93 /* VoiceLabClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceLabClient.swift; sourceTree = "<group>"; };
+		74D73FC532638992AB4DC69C /* WaveformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveformView.swift; sourceTree = "<group>"; };
+		A32BB963BE2685D5364B725F /* Echo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Echo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A70C58E107A3F407EB30D41E /* DemoSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoSpeech.swift; sourceTree = "<group>"; };
+		AA0E4A886680AF3DA805AB67 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AB10F3ABCD2161DDABE8E8AD /* KeyboardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardModel.swift; sourceTree = "<group>"; };
+		B0FB0FCB73D32219DCBA319A /* VoiceKeyboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VoiceKeyboard.entitlements; sourceTree = "<group>"; };
+		B4B73C46B4F5865F163AB561 /* EchoKeyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = EchoKeyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA0BFB846E61D83D34534B5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C8C0C15F55F687814E10E663 /* ComposerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerModel.swift; sourceTree = "<group>"; };
+		CB8EF19A0404D08A74928881 /* SpeechSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSession.swift; sourceTree = "<group>"; };
+		CBC83DAC30CA15057A11974F /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
+		D0CFE68746501CCDB1B952A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F10000000000000000000001 /* EchoLiveActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EchoLiveActivityAttributes.swift; sourceTree = "<group>"; };
+		F10000000000000000000002 /* EchoLiveActivityIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EchoLiveActivityIntents.swift; sourceTree = "<group>"; };
+		F10000000000000000000003 /* EchoLiveActivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EchoLiveActivityController.swift; sourceTree = "<group>"; };
+		F10000000000000000000004 /* EchoLiveActivityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EchoLiveActivityWidget.swift; sourceTree = "<group>"; };
+		F10000000000000000000005 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F10000000000000000000006 /* EchoLiveActivity.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EchoLiveActivity.entitlements; sourceTree = "<group>"; };
+		F10000000000000000000007 /* EchoLiveActivity.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = EchoLiveActivity.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+        A40000000000000000000005 /* Frameworks */ = {
+            isa = PBXFrameworksBuildPhase;
+            buildActionMask = 2147483647;
+            files = (A40000000000000000000001, A40000000000000000000003);
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+		F1000000000000000000019B = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		032B562BF5DED795CC25AD18 /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				F10000000000000000000003,
+				69B152C3A154D1EB0D1355A7 /* KeyboardSessionBanner.swift */,
+				0F48F994BA3B75A543F726A0 /* KeyboardSessionHost.swift */,
+			);
+			path = Keyboard;
+			sourceTree = "<group>";
+		};
+		0CA790D9EF8AE7E9E8A5D717 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F10000000000000000000007,
+				A32BB963BE2685D5364B725F /* Echo.app */,
+				B4B73C46B4F5865F163AB561 /* EchoKeyboard.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		28E2AFFD3F959B0E047C173A /* EchoKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				BA0BFB846E61D83D34534B5B /* Info.plist */,
+                A50000000000000000000002 /* Assets.xcassets */,
+				AB10F3ABCD2161DDABE8E8AD /* KeyboardModel.swift */,
+				A20000000000000000000101 /* UzbekKeyboardDictionary.swift */,
+				14904248AA3F27ABB4112B89 /* KeyboardView.swift */,
+                A70000000000000000000002 /* NativeKeySurface.swift */,
+                A80000000000000000000002 /* KeyboardAppearance.swift */,
+				CBC83DAC30CA15057A11974F /* KeyboardViewController.swift */,
+				B0FB0FCB73D32219DCBA319A /* VoiceKeyboard.entitlements */,
+			);
+			name = EchoKeyboard;
+			path = VoiceKeyboard;
+			sourceTree = "<group>";
+		};
+		48ADB1B95EFC3FE7614949AE /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				F10000000000000000000001,
+				F10000000000000000000002,
+				5268A3C9227C8F60A37F9097 /* VoiceBridge.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		569042D3A78F9D3B08868F13 /* Speech */ = {
+			isa = PBXGroup;
+			children = (
+				A70C58E107A3F407EB30D41E /* DemoSpeech.swift */,
+				CB8EF19A0404D08A74928881 /* SpeechSession.swift */,
+                A60000000000000000000002 /* UzbekTranscriptScript.swift */,
+				A10000000000000000000102 /* EchoAuthClient.swift */,
+				A90000000000000000000102 /* EchoBillingModels.swift */,
+				74232498C8702B92413FAB93 /* VoiceLabClient.swift */,
+			);
+			path = Speech;
+			sourceTree = "<group>";
+		};
+		8C2266E69DB8D72668BA6F67 = {
+			isa = PBXGroup;
+			children = (
+				F1000000000000000000012C /* EchoLiveActivity */,
+				CCD210B98D7380486CB02E52 /* Config */,
+				48ADB1B95EFC3FE7614949AE /* Shared */,
+				C88C74908E57FBA0507E65F0 /* Echo */,
+				28E2AFFD3F959B0E047C173A /* EchoKeyboard */,
+				0CA790D9EF8AE7E9E8A5D717 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C88C74908E57FBA0507E65F0 /* Echo */ = {
+			isa = PBXGroup;
+			children = (
+				D0CFE68746501CCDB1B952A9 /* Info.plist */,
+				4731E6D03EE739D36394D349 /* VoiceInput.entitlements */,
+				A10000000000000000000103 /* Assets.xcassets */,
+				CF9313599A063614C1887613 /* App */,
+				EB0D3D464ADC29B33075AF10 /* Composer */,
+				032B562BF5DED795CC25AD18 /* Keyboard */,
+				569042D3A78F9D3B08868F13 /* Speech */,
+			);
+			name = Echo;
+			path = VoiceInput;
+			sourceTree = "<group>";
+		};
+		CCD210B98D7380486CB02E52 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				6E10E4D59A70FD7A09B5E043 /* App.xcconfig */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		CF9313599A063614C1887613 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				AA0E4A886680AF3DA805AB67 /* ContentView.swift */,
+				A30000000000000000000101 /* EchoProfileView.swift */,
+				A90000000000000000000101 /* EchoBillingView.swift */,
+				A10000000000000000000101 /* OnboardingView.swift */,
+				0B708BAA8F982A05876C7CD1 /* VoiceInputApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		EB0D3D464ADC29B33075AF10 /* Composer */ = {
+			isa = PBXGroup;
+			children = (
+				C8C0C15F55F687814E10E663 /* ComposerModel.swift */,
+				49DF3326C2B17A1C16519BFB /* InputBar.swift */,
+				5F9E844E45626910E0768DCF /* VoiceTextView.swift */,
+				74D73FC532638992AB4DC69C /* WaveformView.swift */,
+			);
+			path = Composer;
+			sourceTree = "<group>";
+		};
+		F1000000000000000000012C /* EchoLiveActivity */ = {isa = PBXGroup; children = (F10000000000000000000004, F10000000000000000000005, F10000000000000000000006, ); path = EchoLiveActivity; sourceTree = "<group>"; };
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		48ACF5FA6ECBC71A34114E9A /* Echo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F6BA6B0A361EA6C3A5FA240D /* Build configuration list for PBXNativeTarget "Echo" */;
+			buildPhases = (
+				C35B10D48E421FB038B7EA39 /* Sources */,
+                A40000000000000000000005 /* Frameworks */,
+				A10000000000000000000301 /* Resources */,
+				669F93732BBE08AE91CD6700 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F10000000000000000000191,
+				1F6D7FBF8A747273DD382187 /* PBXTargetDependency */,
+			);
+			name = Echo;
+			packageProductDependencies = (
+                A40000000000000000000002,
+                A40000000000000000000004,
+			);
+			productName = Echo;
+			productReference = A32BB963BE2685D5364B725F /* Echo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		72C3F8F7EEB8F12677574608 /* EchoKeyboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 524BDD371CBB09EEBF452688 /* Build configuration list for PBXNativeTarget "EchoKeyboard" */;
+			buildPhases = (
+				40B7A20C0CA8B075FA69B461 /* Sources */,
+                A50000000000000000000003 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EchoKeyboard;
+			packageProductDependencies = (
+			);
+			productName = EchoKeyboard;
+			productReference = B4B73C46B4F5865F163AB561 /* EchoKeyboard.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		F10000000000000000000190 /* EchoLiveActivity */ = {
+ isa = PBXNativeTarget;
+ buildConfigurationList = F100000000000000000001F4;
+ buildPhases = (F1000000000000000000019A, F1000000000000000000019B, F1000000000000000000019C, );
+ buildRules = ();
+ dependencies = ();
+ name = EchoLiveActivity;
+ productName = EchoLiveActivity;
+ productReference = F10000000000000000000007;
+ productType = "com.apple.product-type.app-extension";
+ };
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B79158C72F4ABF96A4ADB0B0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+			};
+			buildConfigurationList = EE9E90117BEEEED3CF5BE462 /* Build configuration list for PBXProject "Echo" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 8C2266E69DB8D72668BA6F67;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 0CA790D9EF8AE7E9E8A5D717 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+            packageReferences = (A40000000000000000000006);
+			targets = (
+				F10000000000000000000190 /* EchoLiveActivity */,
+				48ACF5FA6ECBC71A34114E9A /* Echo */,
+				72C3F8F7EEB8F12677574608 /* EchoKeyboard */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+        A50000000000000000000003 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (A50000000000000000000001 /* Keyboard Assets in Resources */, ); runOnlyForDeploymentPostprocessing = 0; };
+		A10000000000000000000301 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000000000000000000203 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1000000000000000000019C = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		40B7A20C0CA8B075FA69B461 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38B4C873DBE1A0D38CC9DE17 /* KeyboardModel.swift in Sources */,
+				A20000000000000000000201 /* UzbekKeyboardDictionary.swift in Sources */,
+				FA11FCE45051CF3CF9480505 /* KeyboardView.swift in Sources */,
+                A70000000000000000000001 /* NativeKeySurface.swift in Sources */,
+                A80000000000000000000001 /* KeyboardAppearance.swift in Sources */,
+				E7D3F6BBCC01215C3346E534 /* KeyboardViewController.swift in Sources */,
+				22BC09BB43150FAE475A1396 /* VoiceBridge.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C35B10D48E421FB038B7EA39 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F10000000000000000000065,
+				F10000000000000000000066,
+				F10000000000000000000067,
+				A10000000000000000000201 /* OnboardingView.swift in Sources */,
+				A10000000000000000000202 /* EchoAuthClient.swift in Sources */,
+				A90000000000000000000202 /* EchoBillingModels.swift in Sources */,
+				C4F2C809078ED87BAD2BA23F /* ComposerModel.swift in Sources */,
+				7ECB1E1AECF0D303AF2126C9 /* ContentView.swift in Sources */,
+				A30000000000000000000201 /* EchoProfileView.swift in Sources */,
+				A90000000000000000000201 /* EchoBillingView.swift in Sources */,
+				70F7A9AF98E83A6153919A05 /* DemoSpeech.swift in Sources */,
+				2FC1B2A6428E15AB5BF26DBF /* InputBar.swift in Sources */,
+				AF01C9EB2E4198E4915BDB5B /* KeyboardSessionBanner.swift in Sources */,
+				181441557B050AAC96BDBBCD /* KeyboardSessionHost.swift in Sources */,
+				DF480663839162B5E1679298 /* SpeechSession.swift in Sources */,
+                A60000000000000000000001 /* UzbekTranscriptScript.swift in Sources */,
+				FAB215321D8CB70888BF3A57 /* VoiceBridge.swift in Sources */,
+				8459FE87086708576E8B18A5 /* VoiceInputApp.swift in Sources */,
+				2893984CBEBE7EA563194EFD /* VoiceLabClient.swift in Sources */,
+				93D932CF199E198EBB80509D /* VoiceTextView.swift in Sources */,
+				8F0BEAB7F4EDE39667044A07 /* WaveformView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1000000000000000000019A = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (F100000000000000000000C9, F100000000000000000000CA, F100000000000000000000CB, F100000000000000000000CC, ); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1F6D7FBF8A747273DD382187 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 72C3F8F7EEB8F12677574608 /* EchoKeyboard */;
+			targetProxy = 7B4A9852BF3B8F71B61C78E6 /* PBXContainerItemProxy */;
+		};
+		F10000000000000000000191 = {isa = PBXTargetDependency; target = F10000000000000000000190; targetProxy = F10000000000000000000192; };
+/* End PBXTargetDependency section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+        A40000000000000000000006 /* GoogleSignIn */ = {
+            isa = XCRemoteSwiftPackageReference;
+            repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+            requirement = {kind = upToNextMajorVersion; minimumVersion = 9.0.0;};
+        };
+/* End XCRemoteSwiftPackageReference section */
+/* Begin XCSwiftPackageProductDependency section */
+        A40000000000000000000002 /* GoogleSignIn */ = {isa = XCSwiftPackageProductDependency; package = A40000000000000000000006; productName = GoogleSignIn;};
+        A40000000000000000000004 /* GoogleSignInSwift */ = {isa = XCSwiftPackageProductDependency; package = A40000000000000000000006; productName = GoogleSignInSwift;};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0E118EFCCB894A35DCA6DD57 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E10E4D59A70FD7A09B5E043 /* App.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = VoiceInput/VoiceInput.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = L5FXR2YA4Q;
+				INFOPLIST_FILE = VoiceInput/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = uz.voicelab.echo.ios;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		2962BCD7351902FFC60E6027 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = VoiceKeyboard/VoiceKeyboard.entitlements;
+				DEVELOPMENT_TEAM = L5FXR2YA4Q;
+				INFOPLIST_FILE = VoiceKeyboard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = uz.voicelab.echo.ios.keyboard;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		3203A627CE71C3F65887EC9F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 23;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		43E2E1B6AAD2E9E1D7519BF8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 23;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		444452D61C1107F7AC9A8843 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E10E4D59A70FD7A09B5E043 /* App.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = VoiceInput/VoiceInput.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = L5FXR2YA4Q;
+				INFOPLIST_FILE = VoiceInput/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = uz.voicelab.echo.ios;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		6FADADD174FE36F681896F99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = VoiceKeyboard/VoiceKeyboard.entitlements;
+				DEVELOPMENT_TEAM = L5FXR2YA4Q;
+				INFOPLIST_FILE = VoiceKeyboard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = uz.voicelab.echo.ios.keyboard;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		F100000000000000000001F5 /* Debug */ = {
+ isa = XCBuildConfiguration;
+ buildSettings = {
+ APPLICATION_EXTENSION_API_ONLY = YES;
+ CODE_SIGN_STYLE = Automatic;
+ CODE_SIGN_ENTITLEMENTS = EchoLiveActivity/EchoLiveActivity.entitlements;
+ DEVELOPMENT_TEAM = L5FXR2YA4Q;
+ GENERATE_INFOPLIST_FILE = NO;
+ INFOPLIST_FILE = EchoLiveActivity/Info.plist;
+ IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+ LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks", "@executable_path/../../Frameworks", );
+ PRODUCT_BUNDLE_IDENTIFIER = uz.voicelab.echo.ios.activity;
+ SDKROOT = iphoneos;
+ SKIP_INSTALL = YES;
+ SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+ TARGETED_DEVICE_FAMILY = 1;
+ };
+ name = Debug;
+ };
+		F100000000000000000001F6 /* Release */ = {
+ isa = XCBuildConfiguration;
+ buildSettings = {
+ APPLICATION_EXTENSION_API_ONLY = YES;
+ CODE_SIGN_STYLE = Automatic;
+ CODE_SIGN_ENTITLEMENTS = EchoLiveActivity/EchoLiveActivity.entitlements;
+ DEVELOPMENT_TEAM = L5FXR2YA4Q;
+ GENERATE_INFOPLIST_FILE = NO;
+ INFOPLIST_FILE = EchoLiveActivity/Info.plist;
+ IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+ LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks", "@executable_path/../../Frameworks", );
+ PRODUCT_BUNDLE_IDENTIFIER = uz.voicelab.echo.ios.activity;
+ SDKROOT = iphoneos;
+ SKIP_INSTALL = YES;
+ SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+ TARGETED_DEVICE_FAMILY = 1;
+ };
+ name = Release;
+ };
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		524BDD371CBB09EEBF452688 /* Build configuration list for PBXNativeTarget "EchoKeyboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6FADADD174FE36F681896F99 /* Debug */,
+				2962BCD7351902FFC60E6027 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		EE9E90117BEEEED3CF5BE462 /* Build configuration list for PBXProject "Echo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3203A627CE71C3F65887EC9F /* Debug */,
+				43E2E1B6AAD2E9E1D7519BF8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F6BA6B0A361EA6C3A5FA240D /* Build configuration list for PBXNativeTarget "Echo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				444452D61C1107F7AC9A8843 /* Debug */,
+				0E118EFCCB894A35DCA6DD57 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F100000000000000000001F4 = {isa = XCConfigurationList; buildConfigurations = (F100000000000000000001F5, F100000000000000000001F6, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Debug; };
+/* End XCConfigurationList section */
+	};
+	rootObject = B79158C72F4ABF96A4ADB0B0 /* Project object */;
+}
