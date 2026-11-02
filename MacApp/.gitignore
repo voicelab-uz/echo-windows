@@ -1,0 +1,26 @@
+.DS_Store
+build/
+.build/
+**/.build/
+**/xcuserdata/
+*.xcuserstate
+
+# Local configuration, signing credentials, and distribution products
+.env
+.env.*
+!.env.example
+*.p12
+*.pfx
+*.p8
+*.key
+*.pem
+*.keychain
+*.keychain-db
+*.mobileprovision
+*.provisionprofile
+*.app/
+*.xcarchive/
+*.dmg
+dist/
+Configuration/release.env.local
+__pycache__/

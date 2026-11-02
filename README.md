@@ -1,5 +1,9 @@
 # Voice Lab Echo - Windows Edition
 
+> **Building or changing the UI?** Start with [AGENTS.md](AGENTS.md) and
+> [MAC_TO_WINDOWS.md](MAC_TO_WINDOWS.md). The full Mac app source is in [`MacApp/`](MacApp/) and is
+> the source of truth for the design.
+
 A native Windows voice dictation application built with .NET 8 and WPF.
 
 ## Features
