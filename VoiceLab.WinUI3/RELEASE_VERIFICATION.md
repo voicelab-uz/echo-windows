@@ -1,10 +1,10 @@
 # VoiceLab Echo Windows release verification
 
-The current source-built package is `artifacts/VoiceLab-Echo-unsigned-review-20261102.zip` (see `README.md` for its SHA-256). It is a self-contained WinUI 3 x64 build. Run it on a Windows 10 2004+ or Windows 11 machine that permits development builds, or sign all VoiceLab binaries through a trusted release process. Do not treat a successful compile as an end-to-end pass.
+Publish the current WinUI 3 x64 source using `BUILD_INSTRUCTIONS.md`, or build `VoiceLab-Echo-Setup-x64.exe` with the installer recipe. Keep portable EXEs beside all published supporting files. Do not treat compilation or startup as an end-to-end pass.
 
 ## Automated checks
 
-1. Extract the ZIP to a new directory. Confirm `VoiceLab.Echo.exe`, `resources.pri`, `Assets/echo-icon.png`, `Assets/QuestionnaireLanguages.json`, `Assets/icons/company-logo.svg`, `Assets/Fonts/manrope-regular.ttf`, `Assets/Fonts/manrope-semibold.ttf`, `Assets/Fonts/OFL.txt`, and `AlphabetLexiconNotices.txt` are present.
+1. Extract the portable ZIP to a new directory, or install the generated setup EXE. Confirm `VoiceLab.Echo.exe`, `resources.pri`, `Assets/echo-icon.png`, `Assets/QuestionnaireLanguages.json`, `Assets/icons/company-logo.svg`, `Assets/Fonts/manrope-regular.ttf`, `Assets/Fonts/manrope-semibold.ttf`, `Assets/Fonts/OFL.txt`, and `AlphabetLexiconNotices.txt` are present.
 2. From this source tree, run `dotnet run --project VoiceLab.WinUI3/VoiceLab.SmokeTests/VoiceLab.SmokeTests.csproj -c Release` on a machine that permits newly built code. It checks local encryption and migration, Mac-compatible auth contracts, note sync and conflicts, STT request behavior, History, usage attribution, notifications, and onboarding APIs.
 3. Start `VoiceLab.Echo.exe` from the extracted directory. A first launch must show Welcome with both the Echo icon and VoiceLab company logo. If Windows rejects it, capture the exact Application Control event and stop the runtime test; changing paths or renaming the executable does not establish release readiness.
 
@@ -35,12 +35,14 @@ The current source-built package is `artifacts/VoiceLab-Echo-unsigned-review-202
 
 Windows auto-update is not an acceptance item for this review build: no signed Windows release feed or installer manifest exists. The Mac Sparkle feed and older Electron release channel cannot install this WinUI 3 package.
 
-## Launch path for this PC
+## Current verification status
 
-Policy ID `{0283ac0f-fff1-49ae-ada1-8a933130cad6}` is Windows 11 **Smart App Control**, not a custom enterprise allowlist. This PC reports `VerifiedAndReputablePolicyState = 1` (enforcement). Microsoft says [Smart App Control has no per-app exception](https://support.microsoft.com/en-us/windows/security/threat-malware-protection/smart-app-control-frequently-asked-questions). An exact-build hash rule or locally self-signed certificate is therefore not a supported way to allow this app while Smart App Control stays On. The older unsigned preview may still run because Smart App Control can use reputation; that does not authorize a changed build.
+On November 3, 2026, the PC owner authorized turning off Smart App Control on the development machine. The published app launched, and the per-user installer completed successfully and launched the installed app. Other Windows environments may still block unsigned builds; a trusted signing process is required for a signed distribution.
 
-For releases on this PC, obtain a certificate from a [trusted code-signing provider or use Microsoft Artifact Signing](https://learn.microsoft.com/en-us/windows/apps/develop/smart-app-control/code-signing-for-smart-app-control), then sign the final `VoiceLab.Echo.exe` and VoiceLab application DLLs, [timestamp them with SHA-256](https://learn.microsoft.com/en-us/windows/win32/seccrypto/time-stamping-authenticode-signatures), and verify the signatures. Keep signing credentials out of the source tree and chat. For immediate unsigned development testing, use a separate Windows environment that permits such builds. The PC owner can also choose to change Smart App Control in Windows Security; this is a system-wide security choice and the app build process must not change it automatically. After a permitted build launches, run the automated and interactive checks above.
+The application builds with zero warnings and errors. Service smoke tests pass for encrypted persistence and BOM migration, Notes sync/conflicts, STT and authentication contracts, account History, notifications, usage attribution, snippets, statistics, and onboarding APIs.
 
-## Current machine result
+Selected runtime checks covered the onboarding shortcut-to-practice transition, Vocabulary/Snippets tab switching, History layout, and inline Copy/Copied feedback. A failed dictation was recovered into encrypted History. Full microphone, insertion, account-switching, offline, accessibility, and release acceptance checks above are not all completed.
 
-On 2026-11-02, launching the published and newly built `VoiceLab.Echo.exe` on the development machine was blocked before process creation. `Microsoft-Windows-CodeIntegrity/Operational` event 3077 identified Smart App Control policy `{0283ac0f-fff1-49ae-ada1-8a933130cad6}`. `dotnet run` also failed to load the newly built smoke-test DLL with `0x800711C7` for the same reason. Direct launch and smoke-test attempts on 2026-11-03 produced the same block. The current executable has `NotSigned` Authenticode status, and no usable code-signing certificate with a private key was available in the standard CurrentUser or LocalMachine personal certificate stores. The interactive checks above remain unverified on this machine.
+The default recording mode is toggle: Win+Alt+Space once to start and again to finish. Optional hold and automatic modes remain configurable. The interface is currently primarily English; dictation supports automatic detection plus explicit English, Uzbek, and Russian.
+
+Keep signing credentials and generated build outputs out of the repository. Installer generation and security-policy changes are separate actions; the installer must not turn off Windows protections.

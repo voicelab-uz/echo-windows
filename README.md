@@ -2,7 +2,7 @@
 
 The Mac reference source and porting guidance are in [MacApp](MacApp/), [AGENTS.md](AGENTS.md), and [MAC_TO_WINDOWS.md](MAC_TO_WINDOWS.md).
 
-The active Windows application is the native WinUI 3 project in `VoiceLab.WinUI3/`. Open `VoiceLabEcho.sln` in Visual Studio, or use `BUILD_AND_RUN.bat` to publish and start the x64 build. The older WPF solution is retained as `VoiceLabEcho.LegacyWpf.sln` for reference; its `VoiceLabEcho.App.exe` is not the current application.
+The Windows application is the native WinUI 3 project in `VoiceLab.WinUI3/`. Open `VoiceLabEcho.sln` in Visual Studio, or use `BUILD_AND_RUN.bat` to publish and start the x64 build. The retired WPF projects and old status reports have been removed from the current tree; committed versions remain in Git history.
 
 ## Build and run
 

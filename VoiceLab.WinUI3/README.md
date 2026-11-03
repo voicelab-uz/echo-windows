@@ -1,53 +1,47 @@
-# VoiceLab Echo for Windows (WinUI 3)
+# VoiceLab Echo: native Windows application
 
-`VoiceLab.App` is the native desktop application. `VoiceLab.Infrastructure` contains authentication, microphone capture, transcription, local data, and the global shortcut. The current Mac reference is `https://github.com/voicelab-uz/echo` (commit `b7ec8be`); its Echo icon, workspace SVG set, theme colors, statistics model, onboarding order, and account History API shape guide this port. The older `desktop` repository is a separate Electron reference. The workspace root `VoiceLabEcho.sln` now opens this WinUI app; `VoiceLabEcho.LegacyWpf.sln` retains the previous WPF project.
+The supported Windows application uses .NET 8 and WinUI 3. Open the repository-root `VoiceLabEcho.sln`. The retired WPF projects and old progress reports have been removed from the current tree; committed versions remain in Git history.
 
-## Build
+## Source layout
 
-From the repository root on Windows with the .NET 8 SDK:
+| Directory | Purpose |
+| --- | --- |
+| `VoiceLab.App/Views` | Workspace, onboarding, and settings pages |
+| `VoiceLab.App/Services` | Recording coordination, floating control, clipboard feedback, tray, and startup |
+| `VoiceLab.App/Styles` | App and onboarding themes |
+| `VoiceLab.Core` | Shared Windows domain models |
+| `VoiceLab.Infrastructure/Services` | Authentication, account APIs, and focused local services |
+| `VoiceLab.Infrastructure/Models` | Local storage and service data models; existing namespaces are preserved |
+| `VoiceLab.Infrastructure/Storage` | Account-scoped encrypted persistence and BOM-compatible migration |
+| `VoiceLab.Infrastructure/Audio` and `Hotkeys` | Microphone capture and Windows shortcut handling |
+| `VoiceLab.SmokeTests` | Executable service regression checks |
+| `installer` | Inno Setup recipe for a single installer EXE |
 
-```powershell
-dotnet publish VoiceLab.WinUI3/VoiceLab.App/VoiceLab.App.csproj -c Release -r win-x64 -p:Platform=x64 --self-contained true -p:WindowsAppSDKSelfContained=true -p:PublishSingleFile=false -o artifacts/VoiceLab-Echo-win-x64
-```
+## Build and run
 
-`BUILD_AND_RUN.bat` at the workspace root now publishes and launches this WinUI 3 project. It no longer builds the older WPF application.
-
-Run `VoiceLab.Echo.exe` from the publish directory with the other published files present. The app stores account data and global settings protected with Windows DPAPI under `%LOCALAPPDATA%\VoiceLab\Echo`; the rotating refresh credential lives in Windows Credential Vault. Earlier plaintext JSON files are migrated to encrypted files after a successful read. The global shortcut can be configured in Settings; it supports Mac-style automatic tap-or-hold, hold-to-talk, and toggle activation when Windows provides key-release tracking. If Windows reserves Win+Alt+Space and native registration fails, Echo attempts a passive keyboard-hook fallback and warns that Windows may also respond to the chord. If release tracking is unavailable, Settings shows toggle-only fallback. Recording automatically transcribes at the Mac app's ten-minute limit. A failed transcription keeps its audio in memory for a same-session Retry; starting a new recording or signing out clears that audio, and sign-out cancels an in-flight request. Ctrl+Win+V reinserts the most recent transcript when that optional shortcut is available; the tray menu can copy it even when Windows has claimed the shortcut. Completed text is saved to device History by default and copied before insertion into the focused external window. Settings can disable device History saving, disable automatic insertion, or switch from clipboard paste to Unicode keyboard typing for apps that reject paste. When insertion succeeds, Echo records the destination and retries account usage attribution through the Mac app's desktop usage endpoint. With device History saving off, pending attribution is held in an encrypted account-scoped outbox until it succeeds.
-
-The STT upload now follows the Mac desktop contract: multipart audio plus `language=auto`, a credential refresh only for a typed `invalid_desktop_token` response, and bounded retries only for typed pre-inference concurrency or overload responses. Audio file uploads stream from disk, accept files up to 500 MB, can be cancelled, and follow the device History saving preference. The synchronous STT client has a 15-minute timeout and an 8 MB response limit, matching the Mac transport budget.
-
-When the server returns a saved transcript ID, local History keeps the server's original text and revision. Snippets, vocabulary corrections, and output punctuation affect inserted text. Onboarding practice transcriptions are shown in the exercise editor without being added to History. The first practice page now requires a successful voice transcription, recorded per account, before setup can finish; a restart before that trial returns to practice. Navigating away during practice STT cancels the request and does not mark the trial complete.
-
-The setup flow now has a separate Uzbek alphabet page, matching the current Mac app's current/new alphabet choice. The same choice is available in Settings. In new-alphabet mode, Echo conservatively converts recognized Uzbek words in inserted text using the Mac app's Uzbek and English lexicons. Links, email addresses, domains, code spans, and literal snippet expansions are protected. The server's original account transcript remains unchanged. The bundled lexicon license and provenance are in `AlphabetLexiconNotices.txt` beside the published app.
-
-Onboarding uses the Mac app's licensed Manrope fonts, including its code-built practice pages. After sign-out, Echo registers the configured global shortcut again so a different account can use it during practice before the main workspace opens.
-
-Desktop authentication accepts the current Mac-compatible authorization and token responses, including HTTP 200 authorization replies and token rotations without optional `request_id` or `session_id` fields. When the server advertises refresh retry support, Echo persists an idempotency key before rotating the refresh credential and reuses it after an ambiguous failure. Windows Credential Vault stores a replacement session before removing the previous entry. The browser callback now checks the exact loopback host, port, path, and single code/state query values, and rejects stray or invalid localhost requests without ending the pending sign-in, honors the server authorization expiry, and keeps a committed sign-in successful if the browser tab closes before reading its confirmation page. Leaving the sign-in page cancels an unfinished callback wait so a new attempt can start immediately. After browser sign-in, Echo activates its main window. Sign-out removes the device credential and sends the Mac desktop logout request; if the server cannot be reached, Echo still signs out locally and shows a revocation warning.
-
-## Verification
-
-Statistics uses account totals when usage attribution has synced. While destination attribution is pending, the application breakdown uses device records and the encrypted outbox so it does not present stale server totals as current.
-
-Home and History merge local and account transcriptions by server ID, keeping repeated phrases as separate records. Home displays a newer server revision when a local copy is stale. History offers an in-place retry when an account page fails to load.
-
-The step-by-step runtime acceptance pass and the exact Application Control result are in `RELEASE_VERIFICATION.md`.
+See [build instructions](../BUILD_INSTRUCTIONS.md) for prerequisites, Visual Studio setup, publishing, and installer generation.
 
 ```powershell
+dotnet build VoiceLabEcho.sln -c Release -p:Platform=x64
 dotnet run --project VoiceLab.WinUI3/VoiceLab.SmokeTests/VoiceLab.SmokeTests.csproj -c Release
 ```
 
-For the desktop flow, finish onboarding (welcome, permissions, microphone, shortcut, Uzbek alphabet, dictation language, sign-in, six optional account questions, practice). Confirm that a silent or too-short microphone sample does not unlock Continue, then speak and confirm that it does. Press the chosen shortcut on its setup page and confirm that Continue unlocks. Restart during the questionnaire and confirm that answers and the current question return; test Skip and the Other detail field. Focus a text editor in another app, press the configured shortcut to start and stop, and verify insertion and both local and account History. A new installation defaults to Win+Alt+Space; the shortcut page requires a detected key press and reports when Windows may also respond or the chord cannot be observed. Also test the floating widget's stop button after switching to a text editor, Escape and close to dismiss the widget, theme and accent changes, then close to tray and restore from the tray icon.
+Run these commands from the repository root. `BUILD_AND_RUN.bat` publishes and opens the WinUI application. A portable EXE must remain beside its runtime, DLLs, resources, and assets.
 
-As of 2026-11-03, this PC has Windows 11 Smart App Control On. Event 3077 shows that it blocks newly generated unsigned app and smoke-test DLLs at launch. The older published package in `artifacts/VoiceLab-Echo-win-x64-final` previously started, but it does not contain the latest source changes and its behavior does not authorize new builds. The new code needs a build signed by a trusted provider or a separate Windows test environment that permits development builds for visual and desktop verification. `artifacts/VoiceLab-Echo-asset-preview.zip` is also an older build with updated artwork only.
+## Current behavior
 
-Mac Echo commit `b7ec8be` also adds legal links to its desktop Welcome and Settings pages. Windows now opens the same VoiceLab privacy, terms, refund, and cookie pages in the default browser.
+The default shortcut is Win+Alt+Space: press once to record and again to finish. Optional hold and automatic activation modes remain in Settings. The global shortcut also starts the required onboarding voice practice. Practice pages have generated XAML metadata so Frame navigation can activate them safely.
 
-The current Mac production onboarding has a six-question account questionnaire backed by `/v1/desktop/onboarding/context` and a completion request to `/v1/desktop/onboarding/completion`. The Windows flow uses those APIs, stores an account-scoped retry draft, and requires a successful shortcut press before leaving shortcut setup. Once the final questionnaire save and voice trial are confirmed, Finish saves completion locally and queues the completion API for the current account; a failed request retries on the next app launch or when Echo returns to the foreground. A full visual click-through and API test on a machine that can launch the new build remain required before release.
+History merges device and account records by server ID. Account transcript deletion is not supported by the desktop API, so those rows do not offer Delete. Clear local copies removes device copies while retaining the account view. Copy buttons confirm success inline. Notes autosaves, syncs account changes, and preserves conflicting edits as copies. Vocabulary and Snippets share a tabbed page.
 
-Notes now queues account-scoped edits on disk and syncs through the current Mac `/v1/desktop/notes` API with revision and mutation IDs. A conflicting remote edit retains the remote original and creates a local ` (copy)` for the Windows edit. Pinning and delayed save while typing are supported; Windows-only folders stay local. The Notes layout stacks its list and editor in a narrow window. Verify offline save and restart, upload, remote download, conflict copies, pinning, and folder preservation on a runnable build. The smoke-test source covers these cases but this machine's policy also blocks that test executable.
+User data and settings are protected with Windows DPAPI under `%LOCALAPPDATA%\VoiceLab\Echo`, with account separation. The rotating refresh credential is stored in Windows Credential Vault. UTF-8 BOM files from earlier previews migrate after a successful read. Assets include their applicable font and lexicon notices.
 
-The main shell now loads the account notification inbox from `/v1/desktop/notifications`, shows unread status, supports pagination and marking items read, and routes the supported destinations into the Windows pages. Dictionary supports correction replacements, Mac language tags, search, bulk import, and text export. These source changes compile; the current machine still cannot launch newly built unsigned files for visual and end-to-end verification.
+Desktop authentication, STT upload, account History, Notes, notifications, and usage attribution follow the Mac reference contracts. Failed dictation retains audio for a same-session retry. Recording is limited to ten minutes; file uploads support cancellation. See the code and acceptance checklist for exact edge cases and limits.
 
-The older WPF app's update dialog is not part of this WinUI build. Windows auto-update remains unimplemented until a signed Windows release channel and update manifest exist. The Mac Sparkle feed contains macOS packages and cannot serve as a Windows update source.
+## Verification and release limits
 
-The current source-built review package is `artifacts/VoiceLab-Echo-unsigned-review-20261102.zip` (SHA-256 `9A3D335D658681887F26D12D6C2E0CF1CD7FCC7669CD6033F420882E5DB3AF06`). It includes Notes sync, questionnaire localization, account notifications, dictionary corrections, the account-backed Home page, Mac-compatible authentication fixes, encrypted account files and settings, a microphone speech check and Uzbek alphabet choice in onboarding, optional automatic pasting and Unicode typing, canonical server History, optional device History saving with an encrypted usage attribution outbox, practice without History pollution, the longer STT transport budget, streamed file uploads, tray restoration after Explorer restarts, last-transcript re-paste and tray copy, Mac-style shortcut activation modes, automatic stop at ten minutes, unexpected microphone-stop handling, Echo SVG icons in the shell and floating control, the Mac onboarding's licensed Manrope font family, `AlphabetLexiconNotices.txt`, and `RELEASE_VERIFICATION.md`. The Statistics navigation SVG adapts the Mac app's chart-bar symbol to the bundled icon palette. Local statistics and the usage chart now count Unicode words by the same rule as the Mac app, including earlier saved rows. History now adapts its filters and edit dialog to narrow windows and disables misleading deletion of server-backed rows. Settings tolerates older mistyped preferences, provides a Windows microphone privacy link, and uses a consistent Win+Alt+Space fallback. It is unsigned and cannot launch while this machine's Smart App Control is On; the ZIP is for review and a permitted test environment, not a verified Windows release.
+Release builds and the service smoke tests pass. Published startup and per-user installer installation/startup have been checked on the development PC. Selected interactive checks covered onboarding shortcut navigation, tab switching, History layout, and Copy feedback; this is not a complete end-to-end acceptance pass.
+
+Follow [RELEASE_VERIFICATION.md](RELEASE_VERIFICATION.md) for remaining checks. Packages are unsigned unless signed through a separate release process. Windows policies may block unsigned builds. Windows auto-update and complete interface localization remain unfinished.
+
+The read-only Mac reference is in [MacApp](../MacApp/), with design assets in [DesignHandoff](../DesignHandoff/) and porting guidance in [MAC_TO_WINDOWS.md](../MAC_TO_WINDOWS.md). User-requested Windows behavior and layouts may differ from the Mac reference.
