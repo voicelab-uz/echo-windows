@@ -36,7 +36,7 @@ History merges device and account records by server ID. Account transcript delet
 
 User data and settings are protected with Windows DPAPI under `%LOCALAPPDATA%\VoiceLab\Echo`, with account separation. The rotating refresh credential is stored in Windows Credential Vault. UTF-8 BOM files from earlier previews migrate after a successful read. Assets include their applicable font and lexicon notices.
 
-Desktop authentication, STT upload, account History, Notes, notifications, and usage attribution follow the Mac reference contracts. Failed dictation retains audio for a same-session retry. Recording is limited to ten minutes; file uploads support cancellation. See the code and acceptance checklist for exact edge cases and limits.
+Desktop authentication, STT upload, account History, Notes, notifications, and usage attribution use the VoiceLab desktop API contracts. Failed dictation retains audio for a same-session retry. Recording is limited to ten minutes; file uploads support cancellation. See the code and acceptance checklist for exact edge cases and limits.
 
 ## Verification and release limits
 
@@ -44,4 +44,4 @@ Release builds and the service smoke tests pass. Published startup and per-user 
 
 Follow [RELEASE_VERIFICATION.md](RELEASE_VERIFICATION.md) for remaining checks. Packages are unsigned unless signed through a separate release process. Windows policies may block unsigned builds. Windows auto-update and complete interface localization remain unfinished.
 
-The read-only Mac reference is in [MacApp](../MacApp/), with design assets in [DesignHandoff](../DesignHandoff/) and porting guidance in [MAC_TO_WINDOWS.md](../MAC_TO_WINDOWS.md). User-requested Windows behavior and layouts may differ from the Mac reference.
+All runtime assets required by the Windows app are bundled in its source projects. Keep the included font and lexicon licenses and provenance notices when distributing the app.

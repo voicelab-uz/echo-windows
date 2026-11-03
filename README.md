@@ -1,6 +1,6 @@
 # VoiceLab Echo for Windows
 
-The Mac reference source and porting guidance are in [MacApp](MacApp/), [AGENTS.md](AGENTS.md), and [MAC_TO_WINDOWS.md](MAC_TO_WINDOWS.md).
+This repository contains only the current Windows application, its tests, build configuration, and installer recipe. See [BUILD_INSTRUCTIONS.md](BUILD_INSTRUCTIONS.md) to build it and [QUICK_START.md](QUICK_START.md) to use it.
 
 The Windows application is the native WinUI 3 project in `VoiceLab.WinUI3/`. Open `VoiceLabEcho.sln` in Visual Studio, or use `BUILD_AND_RUN.bat` to publish and start the x64 build. The retired WPF projects and old status reports have been removed from the current tree; committed versions remain in Git history.
 

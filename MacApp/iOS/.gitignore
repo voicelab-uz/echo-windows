@@ -1,7 +1,0 @@
-# Local API keys
-Config/Secrets.xcconfig
-
-# Xcode
-xcuserdata/
-DerivedData/
-*.xcuserstate

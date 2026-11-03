@@ -1,28 +1,18 @@
 # Instructions for AI agents and developers
 
-This repo is **Echo for Windows** (.NET 8, WinUI 3), in `VoiceLab.WinUI3/`. It uses
-**Echo for macOS**, whose complete source is in [`MacApp/`](MacApp/), as its reference,
-while honoring explicit user-requested Windows changes.
+This repository contains Echo for Windows, built with .NET 8 and WinUI 3.
+The supported solution is `VoiceLabEcho.sln`; application source is in `VoiceLab.WinUI3/`.
 
-Before changing any UI or behaviour, read:
-1. [`MAC_TO_WINDOWS.md`](MAC_TO_WINDOWS.md): how to port, the SwiftUI → WinUI table, and which Mac
-   file each screen comes from.
-2. [`DesignHandoff/HANDOFF.md`](DesignHandoff/HANDOFF.md): the spec for brand, layout, screens,
-   onboarding, shortcuts and the server API.
-3. The matching Swift files in `MacApp/`, completely.
+- Follow the user's current requirements and the established Windows UI patterns.
+- Read `README.md`, `BUILD_INSTRUCTIONS.md`, and the relevant source before changing behavior.
+- Keep authentication, transcription, account separation, encrypted storage, and API contracts intact.
+- Reuse the app's bundled styles and assets. Preserve font and lexicon licenses and provenance notices.
+- Keep generated binaries, installers, local credentials, session files, and test outputs out of Git.
+- Do not reintroduce retired projects, external reference source trees, or old progress reports.
+- Keep documentation aligned with the actual application and report unverified behavior accurately.
+- Never change Windows security policies as part of ordinary builds or installation.
 
-Rules:
-- The Mac app is the source of truth for reference behavior and API contracts. Follow
-  explicit user requests when Windows behavior or layout differs.
-- Copy exact values (sizes, colours, fonts, radii, animation timings, strings) from the Swift code.
-  Don't invent new layouts, colours or copy.
-- Use only assets from `DesignHandoff/` (icons, colours, fonts, localization). Onboarding
-  illustrations are drawn in code (HANDOFF §5.1), not images.
-- Port `VoiceLabCore` logic together with its tests; Windows tests must give the same results.
-- Never edit `MacApp/`. Refresh it with `DesignHandoff/Tools/sync-mac-source.sh /path/to/echo`.
-- Consult the Windows release limits in `MAC_TO_WINDOWS.md`; record new platform
-  differences in HANDOFF §9.
-
-Build the root `VoiceLabEcho.sln` and run `VoiceLab.WinUI3/VoiceLab.SmokeTests` for service checks.
-Keep generated packages in ignored `artifacts/`. Do not reintroduce the retired WPF projects
-or old progress reports; Git history preserves the committed legacy implementation.
+Build with `dotnet build VoiceLabEcho.sln -c Release -p:Platform=x64`.
+Run service checks with `dotnet run --project VoiceLab.WinUI3/VoiceLab.SmokeTests/VoiceLab.SmokeTests.csproj -c Release`.
+Follow `VoiceLab.WinUI3/RELEASE_VERIFICATION.md` for interactive acceptance checks.
+The single-file installer recipe is `VoiceLab.WinUI3/installer/VoiceLab-Echo.iss`.
