@@ -49,6 +49,28 @@ jobs:
               throw 'Echo did not reach main-window activation in this runner session.'
             }
             Write-Output 'Echo reached main-window activation and remained running.'
+            try {
+              Add-Type -AssemblyName System.Windows.Forms
+              Add-Type -AssemblyName System.Drawing
+              $bounds = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds
+              $imageDirectory = 'artifacts/startup'
+              New-Item -ItemType Directory -Path $imageDirectory -Force | Out-Null
+              $bitmap = [System.Drawing.Bitmap]::new($bounds.Width, $bounds.Height)
+              $graphics = [System.Drawing.Graphics]::FromImage($bitmap)
+              try {
+                $graphics.CopyFromScreen($bounds.Location, [System.Drawing.Point]::Empty, $bounds.Size)
+                $bitmap.Save((Join-Path $imageDirectory 'echo-welcome.png'),
+                  [System.Drawing.Imaging.ImageFormat]::Png)
+                Write-Output "Captured startup screen at $($bounds.Width)x$($bounds.Height)."
+              }
+              finally {
+                $graphics.Dispose()
+                $bitmap.Dispose()
+              }
+            }
+            catch {
+              Write-Warning "The runner could not capture its desktop: $_"
+            }
           }
           finally {
             if ($appProcess -and -not $appProcess.HasExited) {
@@ -60,4 +82,11 @@ jobs:
           name: VoiceLab-Echo-win-x64-unsigned
           path: artifacts/VoiceLab-Echo-win-x64/
           if-no-files-found: error
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: VoiceLab-Echo-startup-screenshot
+          path: artifacts/startup/echo-welcome.png
+          if-no-files-found: ignore
           retention-days: 7
