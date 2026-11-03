@@ -1,5 +1,7 @@
 # Voice Lab Echo - Quick Start Guide
 
+> This guide describes the retired WPF preview. For the current WinUI 3 app, use [README.md](README.md) and [the release verification checklist](VoiceLab.WinUI3/RELEASE_VERIFICATION.md). The executable is `VoiceLab.Echo.exe`; the default shortcut is Win+Alt+Space. The current unsigned build cannot launch on this PC while Windows 11 Smart App Control is On.
+
 ## Installation
 
 1. Download the latest release from the releases page

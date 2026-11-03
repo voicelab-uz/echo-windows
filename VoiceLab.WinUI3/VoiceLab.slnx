@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="VoiceLab.App/VoiceLab.App.csproj">
+    <Platform Project="x64" />
+  </Project>
+  <Project Path="VoiceLab.Core/VoiceLab.Core.csproj" />
+  <Project Path="VoiceLab.Infrastructure/VoiceLab.Infrastructure.csproj" />
+</Solution>

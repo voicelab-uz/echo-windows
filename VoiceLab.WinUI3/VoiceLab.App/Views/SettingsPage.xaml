@@ -1,0 +1,128 @@
+<Page x:Class="VoiceLab.App.Views.SettingsPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Background="{StaticResource EchoPageBrush}">
+    <ScrollViewer SizeChanged="OnSettingsScrollSizeChanged" HorizontalScrollBarVisibility="Disabled">
+        <Grid x:Name="SettingsContent" Padding="24" MaxWidth="800" HorizontalAlignment="Left">
+            <StackPanel Spacing="24">
+                <TextBlock Text="Settings" FontSize="24" FontWeight="SemiBold"/>
+
+                <Border Style="{StaticResource ModernCard}">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="Appearance" FontSize="16" FontWeight="SemiBold"/>
+                        <ComboBox x:Name="ThemeSelector" SelectedValuePath="Tag" SelectionChanged="OnThemeChanged">
+                            <ComboBoxItem Content="Use Windows theme" Tag="system"/>
+                            <ComboBoxItem Content="Light" Tag="light"/>
+                            <ComboBoxItem Content="Dark" Tag="dark"/>
+                        </ComboBox>
+                        <TextBlock Text="Accent color" Foreground="{StaticResource TextSecondaryBrush}"/>
+                        <ComboBox x:Name="AccentSelector" SelectedValuePath="Tag" SelectionChanged="OnAccentChanged">
+                            <ComboBoxItem Content="VoiceLab" Tag="voicelab"/>
+                            <ComboBoxItem Content="Use Windows accent" Tag="system"/>
+                            <ComboBoxItem Content="Blue" Tag="blue"/>
+                            <ComboBoxItem Content="Purple" Tag="purple"/>
+                            <ComboBoxItem Content="Pink" Tag="pink"/>
+                            <ComboBoxItem Content="Red" Tag="red"/>
+                            <ComboBoxItem Content="Orange" Tag="orange"/>
+                            <ComboBoxItem Content="Yellow" Tag="yellow"/>
+                            <ComboBoxItem Content="Green" Tag="green"/>
+                            <ComboBoxItem Content="Graphite" Tag="graphite"/>
+                        </ComboBox>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource ModernCard}">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Hotkey" FontSize="16" FontWeight="SemiBold"/>
+                        <TextBlock Text="Global keyboard shortcut to start recording" Foreground="#78716C" TextWrapping="Wrap"/>
+                        <ComboBox x:Name="ShortcutSelector" SelectedValuePath="Tag" SelectionChanged="OnShortcutChanged">
+                            <ComboBoxItem Content="Win + Alt + Space" Tag="win-alt-space"/>
+                            <ComboBoxItem Content="Ctrl + Alt + Space" Tag="ctrl-alt-space"/>
+                            <ComboBoxItem Content="Ctrl + Shift + Space" Tag="ctrl-shift-space"/>
+                        </ComboBox>
+                        <TextBlock Text="Activation mode" Foreground="{StaticResource TextSecondaryBrush}"/>
+                        <ComboBox x:Name="ActivationModeSelector" SelectedValuePath="Tag" SelectionChanged="OnActivationModeChanged">
+                            <ComboBoxItem Content="Automatic: tap or hold" Tag="automatic"/>
+                            <ComboBoxItem Content="Press once to start, again to stop" Tag="toggle"/>
+                            <ComboBoxItem Content="Hold to talk" Tag="hold"/>
+                        </ComboBox>
+                        <TextBlock x:Name="ActivationModeInfo" TextWrapping="Wrap" Foreground="{StaticResource TextSecondaryBrush}"/>
+                        <TextBlock x:Name="PasteShortcutInfo" TextWrapping="Wrap" Foreground="{StaticResource TextSecondaryBrush}"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource ModernCard}">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Language" FontSize="16" FontWeight="SemiBold"/>
+                        <ComboBox x:Name="LanguageSelector" SelectedValuePath="Tag" SelectionChanged="OnLanguageChanged">
+                            <ComboBoxItem Content="Automatic" Tag="auto"/>
+                            <ComboBoxItem Content="English" Tag="en"/>
+                            <ComboBoxItem Content="O‘zbekcha" Tag="uz"/>
+                            <ComboBoxItem Content="Русский" Tag="ru"/>
+                        </ComboBox>
+                        <TextBlock Text="Uzbek alphabet" Foreground="{StaticResource TextSecondaryBrush}"/>
+                        <ComboBox x:Name="AlphabetSelector" SelectedValuePath="Tag" SelectionChanged="OnAlphabetChanged">
+                            <ComboBoxItem Content="Current alphabet — O‘zbekiston" Tag="current"/>
+                            <ComboBoxItem Content="New alphabet — Özbekiston" Tag="modern"/>
+                        </ComboBox>
+                        <TextBlock Text="Applies to inserted Uzbek dictation text; account transcripts keep their original wording."
+                                   Foreground="{StaticResource TextSecondaryBrush}" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource ModernCard}">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Microphone" FontSize="16" FontWeight="SemiBold"/>
+                        <TextBlock Text="Choose the device used for recording and dictation." Foreground="{StaticResource TextSecondaryBrush}"/>
+                        <ComboBox x:Name="MicrophoneSelector" SelectionChanged="OnMicrophoneChanged" HorizontalAlignment="Stretch"/>
+                        <Button Content="Open Windows microphone privacy settings" Style="{StaticResource SecondaryButton}"
+                                Click="OnOpenMicPrivacyClick" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource ModernCard}">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="Dictation output" FontSize="16" FontWeight="SemiBold"/>
+                        <ToggleSwitch x:Name="AutoPasteToggle" Header="Paste into the focused app automatically" Toggled="OnOutputChanged"/>
+                        <ToggleSwitch x:Name="RetainHistoryToggle" Header="Save new dictations in this device's History" Toggled="OnOutputChanged"/>
+                        <TextBlock Text="Text insertion method" Foreground="{StaticResource TextSecondaryBrush}"/>
+                        <ComboBox x:Name="InsertionMethodSelector" SelectedValuePath="Tag" SelectionChanged="OnInsertionMethodChanged">
+                            <ComboBoxItem Content="Paste from clipboard" Tag="paste"/>
+                            <ComboBoxItem Content="Type characters (for apps that block paste)" Tag="type"/>
+                        </ComboBox>
+                        <ToggleSwitch x:Name="CapitalizationToggle" Header="Capitalize the first word" Toggled="OnOutputChanged"/>
+                        <ToggleSwitch x:Name="PunctuationToggle" Header="Add ending punctuation" Toggled="OnOutputChanged"/>
+                        <ToggleSwitch x:Name="SoundToggle" Header="Play sound feedback when recording starts and stops" Toggled="OnOutputChanged"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource ModernCard}">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="Startup" FontSize="16" FontWeight="SemiBold"/>
+                        <ToggleSwitch x:Name="StartupToggle" Header="Launch Echo when I sign in to Windows" Toggled="OnStartupChanged"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource ModernCard}">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="Account" FontSize="16" FontWeight="SemiBold"/>
+                        <TextBlock x:Name="AccountEmail" Text="Signed in" Foreground="{StaticResource TextSecondaryBrush}"/>
+                        <Button x:Name="SignOutButton" Content="Sign Out" Style="{StaticResource SecondaryButton}" Click="OnSignOutClick"/>
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource ModernCard}">
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="Legal" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                        <TextBlock Text="These pages open in your browser." TextWrapping="Wrap"
+                                   Foreground="{StaticResource TextSecondaryBrush}" Margin="0,0,0,4"/>
+                        <HyperlinkButton Content="Privacy policy ↗" Tag="privacy" Click="OnLegalLinkClick"
+                                         MinHeight="44" Padding="0" HorizontalAlignment="Left"/>
+                        <HyperlinkButton Content="Terms of Service ↗" Tag="terms" Click="OnLegalLinkClick"
+                                         MinHeight="44" Padding="0" HorizontalAlignment="Left"/>
+                        <HyperlinkButton Content="Refund policy ↗" Tag="refund" Click="OnLegalLinkClick"
+                                         MinHeight="44" Padding="0" HorizontalAlignment="Left"/>
+                        <HyperlinkButton Content="Cookie policy ↗" Tag="cookies" Click="OnLegalLinkClick"
+                                         MinHeight="44" Padding="0" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Page>

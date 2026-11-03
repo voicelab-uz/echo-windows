@@ -1,0 +1,92 @@
+name: WinUI 3 review build
+
+on:
+  push:
+    branches:
+      - codex/winui3-*
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: windows-2025
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Restore
+        run: dotnet restore VoiceLabEcho.sln -p:Platform=x64
+      - name: Build Windows app and smoke tests
+        run: dotnet build VoiceLabEcho.sln -c Release -p:Platform=x64 --no-restore
+      - name: Run service smoke tests
+        run: dotnet run --project VoiceLab.WinUI3/VoiceLab.SmokeTests/VoiceLab.SmokeTests.csproj -c Release --no-restore
+      - name: Publish unsigned x64 review build
+        run: dotnet publish VoiceLab.WinUI3/VoiceLab.App/VoiceLab.App.csproj -c Release -r win-x64 -p:Platform=x64 --self-contained true -p:WindowsAppSDKSelfContained=true -p:PublishSingleFile=false --no-restore -o artifacts/VoiceLab-Echo-win-x64
+      - name: Probe WinUI startup in runner session
+        continue-on-error: true
+        shell: pwsh
+        run: |
+          $startupLog = Join-Path $env:TEMP 'VoiceLabEchoStartup.log'
+          Remove-Item -LiteralPath $startupLog -ErrorAction SilentlyContinue
+          $appDirectory = (Resolve-Path 'artifacts/VoiceLab-Echo-win-x64').Path
+          $appPath = Join-Path $appDirectory 'VoiceLab.Echo.exe'
+          $appProcess = $null
+          try {
+            $appProcess = Start-Process -FilePath $appPath -WorkingDirectory $appDirectory -PassThru -ErrorAction Stop
+            Start-Sleep -Seconds 12
+            if (Test-Path -LiteralPath $startupLog) {
+              Get-Content -LiteralPath $startupLog | Write-Output
+            }
+            if ($appProcess.HasExited) {
+              throw "Echo exited during startup with code $($appProcess.ExitCode)."
+            }
+            if (-not (Test-Path -LiteralPath $startupLog) -or
+                -not (Select-String -LiteralPath $startupLog -Pattern 'Main window activated' -Quiet)) {
+              throw 'Echo did not reach main-window activation in this runner session.'
+            }
+            Write-Output 'Echo reached main-window activation and remained running.'
+            try {
+              Add-Type -AssemblyName System.Windows.Forms
+              Add-Type -AssemblyName System.Drawing
+              $bounds = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds
+              $imageDirectory = 'artifacts/startup'
+              New-Item -ItemType Directory -Path $imageDirectory -Force | Out-Null
+              $bitmap = [System.Drawing.Bitmap]::new($bounds.Width, $bounds.Height)
+              $graphics = [System.Drawing.Graphics]::FromImage($bitmap)
+              try {
+                $graphics.CopyFromScreen($bounds.Location, [System.Drawing.Point]::Empty, $bounds.Size)
+                $bitmap.Save((Join-Path $imageDirectory 'echo-welcome.png'),
+                  [System.Drawing.Imaging.ImageFormat]::Png)
+                Write-Output "Captured startup screen at $($bounds.Width)x$($bounds.Height)."
+              }
+              finally {
+                $graphics.Dispose()
+                $bitmap.Dispose()
+              }
+            }
+            catch {
+              Write-Warning "The runner could not capture its desktop: $_"
+            }
+          }
+          finally {
+            if ($appProcess -and -not $appProcess.HasExited) {
+              Stop-Process -Id $appProcess.Id -Force
+            }
+          }
+      - uses: actions/upload-artifact@v4
+        with:
+          name: VoiceLab-Echo-win-x64-unsigned
+          path: artifacts/VoiceLab-Echo-win-x64/
+          if-no-files-found: error
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: VoiceLab-Echo-startup-screenshot
+          path: artifacts/startup/echo-welcome.png
+          if-no-files-found: ignore
+          retention-days: 7

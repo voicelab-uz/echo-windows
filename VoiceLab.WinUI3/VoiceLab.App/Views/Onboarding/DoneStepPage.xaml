@@ -1,0 +1,174 @@
+<Page
+    x:Class="VoiceLab.App.Views.Onboarding.DoneStepPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      FontFamily="{StaticResource OnbFontFamily}"
+      Background="{StaticResource OnbBgBrush}">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+    <Grid Padding="24">
+        <StackPanel
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            MaxWidth="500"
+            Spacing="32">
+
+            <!-- Title -->
+            <TextBlock Text="You're all set!"
+                       Style="{StaticResource OnbTitle}"/>
+
+            <!-- Subtitle -->
+            <TextBlock Text="Here's how to use VoiceLab Echo"
+                       Style="{StaticResource OnbSubtitle}"/>
+
+            <!-- Celebration Icon with Confetti -->
+            <Grid Width="80" Height="80" Margin="0,8,0,0">
+                <!-- Confetti Container (absolute positioned) -->
+                <Canvas x:Name="ConfettiContainer"
+                       Width="400"
+                       Height="400"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+
+                <!-- Celebration Circle -->
+                <Ellipse Width="80"
+                        Height="80"
+                        Fill="{StaticResource OnbPanelBrush}"
+                        Stroke="{StaticResource OnbCardBorderBrush}"
+                        StrokeThickness="1"/>
+
+                <!-- Party Icon -->
+                <Image x:Name="CelebrationIcon" Source="ms-appx:///Assets/icons/star.svg"
+                       Width="36" Height="36" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+
+            <!-- Steps -->
+            <StackPanel Spacing="12" MaxWidth="400" Margin="0,16,0,0">
+
+                <!-- Step 1 -->
+                <Border Style="{StaticResource OnbCard}">
+                    <Grid Padding="16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0"
+                               Width="36"
+                               Height="36"
+                               Background="{StaticResource OnbInkBrush}"
+                               CornerRadius="18"
+                               Margin="0,0,12,0">
+                            <TextBlock Text="1"
+                                      FontSize="16"
+                                      FontWeight="SemiBold"
+                                      Foreground="{StaticResource OnbBgBrush}"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                        </Border>
+
+                        <TextBlock Grid.Column="1"
+                                  Text="Open any app where you can type"
+                                  FontSize="14"
+                                  FontWeight="Medium"
+                                  VerticalAlignment="Center"
+                                  TextWrapping="Wrap"/>
+
+                        <Image x:Name="AppStepIcon" Grid.Column="2" Source="ms-appx:///Assets/icons/doc.svg"
+                               Width="16" Height="16" VerticalAlignment="Center"/>
+                    </Grid>
+                </Border>
+
+                <!-- Step 2 -->
+                <Border Style="{StaticResource OnbCard}">
+                    <Grid Padding="16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0"
+                               Width="36"
+                               Height="36"
+                               Background="{StaticResource OnbInkBrush}"
+                               CornerRadius="18"
+                               Margin="0,0,12,0">
+                            <TextBlock Text="2"
+                                      FontSize="16"
+                                      FontWeight="SemiBold"
+                                      Foreground="{StaticResource OnbBgBrush}"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                        </Border>
+
+                        <TextBlock Grid.Column="1"
+                                  Text="Click where you want to type"
+                                  FontSize="14"
+                                  FontWeight="Medium"
+                                  VerticalAlignment="Center"
+                                  TextWrapping="Wrap"/>
+
+                        <Image x:Name="EditStepIcon" Grid.Column="2" Source="ms-appx:///Assets/icons/edit.svg"
+                               Width="16" Height="16" VerticalAlignment="Center"/>
+                    </Grid>
+                </Border>
+
+                <!-- Step 3 -->
+                <Border Style="{StaticResource OnbCard}">
+                    <Grid Padding="16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0"
+                               Width="36"
+                               Height="36"
+                               Background="{StaticResource OnbInkBrush}"
+                               CornerRadius="18"
+                               Margin="0,0,12,0">
+                            <TextBlock Text="3"
+                                      FontSize="16"
+                                      FontWeight="SemiBold"
+                                      Foreground="{StaticResource OnbBgBrush}"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                        </Border>
+
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                            <TextBlock FontSize="14" FontWeight="Medium" TextWrapping="Wrap">
+                                <Run Text="Press "/>
+                                <Run x:Name="ShortcutRun" Text="Win+Alt+Space" Foreground="{StaticResource OnbAccentBrush}" FontWeight="Bold"/>
+                                <Run Text=" and speak"/>
+                            </TextBlock>
+                        </StackPanel>
+
+                        <Image x:Name="ShortcutStepIcon" Grid.Column="2" Source="ms-appx:///Assets/icons/keyboard.svg"
+                               Width="16" Height="16" VerticalAlignment="Center"/>
+                    </Grid>
+                </Border>
+
+            </StackPanel>
+
+            <!-- Note -->
+            <TextBlock Text="Your text will appear automatically where you clicked"
+                      FontSize="12"
+                      Foreground="{StaticResource OnbInkMutedBrush}"
+                      TextAlignment="Center"
+                      TextWrapping="Wrap"
+                      MaxWidth="400"/>
+
+            <!-- Finish Button -->
+            <Button x:Name="FinishButton" Content="Start Using Echo"
+                    Style="{StaticResource OnbPrimaryButton}"
+                    Click="OnFinishClick"
+                    Margin="0,8,0,0"/>
+            <TextBlock x:Name="FinishStatus" Foreground="{StaticResource OnbInkMutedBrush}" TextWrapping="Wrap" TextAlignment="Center" MaxWidth="400"/>
+
+        </StackPanel>
+    </Grid>
+    </ScrollViewer>
+</Page>

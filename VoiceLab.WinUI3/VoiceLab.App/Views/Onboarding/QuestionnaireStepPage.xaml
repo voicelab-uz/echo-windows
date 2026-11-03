@@ -1,0 +1,90 @@
+<Page x:Class="VoiceLab.App.Views.Onboarding.QuestionnaireStepPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      FontFamily="{StaticResource OnbFontFamily}"
+      Background="{StaticResource OnbBgBrush}">
+    <Grid x:Name="QuestionLayout" SizeChanged="OnLayoutSizeChanged">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="QuestionColumn" Width="5*"/>
+            <ColumnDefinition x:Name="IllustrationColumn" Width="6*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Padding="28,18">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <StackPanel MaxWidth="520" HorizontalAlignment="Left" Spacing="18" Padding="0,12,0,16">
+                    <TextBlock x:Name="QuestionCount" Text="1 / 6" FontSize="12"
+                               Foreground="{StaticResource OnbInkMutedBrush}"/>
+                    <TextBlock x:Name="QuestionTitle" Text="Loading your questions…"
+                               FontSize="30" FontWeight="SemiBold" TextWrapping="Wrap"
+                               Foreground="{StaticResource OnbInkBrush}"/>
+                    <TextBlock x:Name="QuestionHint" Text="Every question is optional."
+                               FontSize="13" TextWrapping="Wrap"
+                               Foreground="{StaticResource OnbInkMutedBrush}"/>
+                    <ItemsControl x:Name="OptionsList">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapGrid Orientation="Horizontal" ItemWidth="185" ItemHeight="50"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                    <TextBox x:Name="OtherText" Header="Tell us a little more"
+                             PlaceholderText="Optional details" MaxLength="280"
+                             TextChanged="OnOtherTextChanged" Visibility="Collapsed"
+                             TextWrapping="Wrap"/>
+                </StackPanel>
+            </ScrollViewer>
+            <StackPanel Grid.Row="1" Spacing="8" Padding="0,4,0,2">
+                <TextBlock x:Name="QuestionStatus" TextWrapping="Wrap" FontSize="12"
+                           Foreground="{StaticResource OnbInkMutedBrush}"/>
+                <Button x:Name="ReloadButton" Content="Reload saved answers"
+                        Style="{StaticResource OnbSecondaryButton}"
+                        Click="OnReloadClick" Visibility="Collapsed" HorizontalAlignment="Left"/>
+            </StackPanel>
+            <Grid x:Name="FooterGrid" Grid.Row="2" ColumnSpacing="8" RowSpacing="8" Padding="0,10,0,2">
+                <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="QuestionBackButton" Content="Back" Grid.Column="0"
+                        Style="{StaticResource OnbSecondaryButton}" Click="OnBackClick"/>
+                <Button x:Name="SkipButton" Content="Skip" Grid.Column="2"
+                        Style="{StaticResource OnbSecondaryButton}" Click="OnSkipClick"/>
+                <Button x:Name="ContinueButton" Content="Continue" Grid.Column="3"
+                        Style="{StaticResource OnbPrimaryButton}" Click="OnContinueClick"/>
+            </Grid>
+        </Grid>
+        <Border x:Name="IllustrationPanel" Grid.Column="1" Background="{StaticResource OnbPanelBrush}"
+                Padding="30" CornerRadius="0,0,16,0">
+            <StackPanel Spacing="22" MaxWidth="390" VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                <Image Source="ms-appx:///Assets/echo-icon.png" Width="62" Height="62"
+                       HorizontalAlignment="Left"/>
+                <Image x:Name="IllustrationIcon" Source="ms-appx:///Assets/icons/search.svg"
+                       Width="48" Height="48" HorizontalAlignment="Left"/>
+                <TextBlock x:Name="IllustrationTitle" Text="Make Echo yours." FontSize="30" FontWeight="SemiBold"
+                           Foreground="{StaticResource OnbInkBrush}" TextWrapping="Wrap"/>
+                <TextBlock x:Name="IllustrationDescription" Text="Your answers help us improve Echo."
+                           FontSize="15" LineHeight="24" TextWrapping="Wrap"
+                           Foreground="{StaticResource OnbInkMutedBrush}"/>
+                <Border Background="{StaticResource OnbCardBrush}" CornerRadius="12"
+                        BorderBrush="{StaticResource OnbCardBorderBrush}" BorderThickness="1"
+                        Padding="18">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="Your progress is saved" FontWeight="SemiBold"
+                                   Foreground="{StaticResource OnbInkBrush}"/>
+                        <TextBlock Text="Return to setup later and continue from your last answer."
+                                   TextWrapping="Wrap" FontSize="12"
+                                   Foreground="{StaticResource OnbInkMutedBrush}"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>
