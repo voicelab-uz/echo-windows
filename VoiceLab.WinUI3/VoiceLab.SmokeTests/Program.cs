@@ -91,8 +91,9 @@ try
     Assert(UzbekAlphabetConverter.Convert("shahar chat shopda chiroq") ==
         "şahar chat shopda çiroq", "Modern alphabet conversion changed ambiguous English text.");
     settings.SaveSetting("UzbekAlphabet", "modern");
-    Assert(await (Task<string>)formatter.Invoke(service, ["Chiroyli shablon va g‘oya", "uz"])! ==
-        "Çiroyli shablon va ğoya.", "The selected alphabet was not applied to dictation output.");
+    var modernOutput = await (Task<string>)formatter.Invoke(service, ["Chiroyli shablon va g‘oya", "uz"])!;
+    Assert(modernOutput == "Çiroyli şablon va ğoya.",
+        $"The selected alphabet was not applied to dictation output. Actual: {modernOutput}");
     await snippets.CreateSnippetAsync("shablon", "Best wishes, Shavkat\nhttps://shop.uz/ch");
     Assert(await (Task<string>)formatter.Invoke(service, ["Chiroyli shablon va g‘oya", "uz"])! ==
         "Çiroyli Best wishes, Shavkat\nhttps://shop.uz/ch va ğoya.",
