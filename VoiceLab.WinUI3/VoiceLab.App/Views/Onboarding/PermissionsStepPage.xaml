@@ -1,0 +1,81 @@
+<Page
+    x:Class="VoiceLab.App.Views.Onboarding.PermissionsStepPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      FontFamily="{StaticResource OnbFontFamily}"
+      Background="{StaticResource OnbBgBrush}">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+    <Grid Padding="24">
+        <StackPanel
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            MaxWidth="500"
+            Spacing="32">
+
+            <!-- Title -->
+            <TextBlock Text="Microphone Access"
+                       Style="{StaticResource OnbTitle}"/>
+
+            <!-- Subtitle -->
+            <TextBlock Text="VoiceLab needs access to your microphone to transcribe speech"
+                       Style="{StaticResource OnbSubtitle}"/>
+
+            <!-- Icon -->
+            <Border Width="80" Height="80"
+                    Background="{StaticResource OnbPanelBrush}"
+                    CornerRadius="40"
+                    BorderBrush="{StaticResource OnbCardBorderBrush}"
+                    BorderThickness="1">
+                <Image x:Name="PermissionMicIcon" Source="ms-appx:///Assets/icons/mic.svg"
+                       Width="36" Height="36"/>
+            </Border>
+
+            <!-- Info Card -->
+            <Border Style="{StaticResource OnbCard}">
+                <StackPanel Spacing="12">
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <Image x:Name="SecurityIcon" Source="ms-appx:///Assets/icons/shield.svg" Width="16" Height="16"/>
+                        <TextBlock Text="Your audio is processed securely"
+                                  FontSize="14"
+                                  FontWeight="Medium"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <Image x:Name="CloudIcon" Source="ms-appx:///Assets/icons/speech-to-text.svg" Width="16" Height="16"/>
+                        <TextBlock Text="Audio is sent to VoiceLab Cloud for transcription"
+                                  FontSize="14"
+                                  FontWeight="Medium"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <Image x:Name="ControlIcon" Source="ms-appx:///Assets/icons/settings.svg" Width="16" Height="16"/>
+                        <TextBlock Text="You can revoke access anytime"
+                                  FontSize="14"
+                                  FontWeight="Medium"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Status -->
+            <TextBlock x:Name="StatusText"
+                      Text=""
+                      FontSize="14"
+                      FontWeight="SemiBold"
+                      TextAlignment="Center"/>
+
+            <!-- Grant Button -->
+            <Button x:Name="GrantButton"
+                    Content="Grant Microphone Access"
+                    Style="{StaticResource OnbPrimaryButton}"
+                    Click="OnGrantAccessClick"
+                    Margin="0,8,0,0"/>
+
+            <Button Content="Open Windows microphone settings"
+                    Style="{StaticResource OnbSecondaryButton}"
+                    Click="OnOpenMicrophoneSettingsClick"/>
+
+        </StackPanel>
+    </Grid>
+    </ScrollViewer>
+</Page>

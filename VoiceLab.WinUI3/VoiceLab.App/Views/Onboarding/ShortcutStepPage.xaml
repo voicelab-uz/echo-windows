@@ -1,0 +1,90 @@
+<Page
+    x:Class="VoiceLab.App.Views.Onboarding.ShortcutStepPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      FontFamily="{StaticResource OnbFontFamily}"
+      Background="{StaticResource OnbBgBrush}">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+    <Grid Padding="24">
+        <StackPanel
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            MaxWidth="500"
+            Spacing="32">
+
+            <!-- Title -->
+            <TextBlock Text="Choose Your Shortcut"
+                       Style="{StaticResource OnbTitle}"/>
+
+            <!-- Subtitle -->
+            <TextBlock Text="Pick a keyboard shortcut to activate voice dictation"
+                       Style="{StaticResource OnbSubtitle}"/>
+
+            <!-- Shortcut Options -->
+            <StackPanel Spacing="12">
+
+                <!-- Ctrl+Alt+Space -->
+                <RadioButton x:Name="CtrlAltOption" GroupName="Shortcut" Checked="OnShortcutChecked" Style="{StaticResource OnbRadioButton}">
+                    <Border Style="{StaticResource OnbCard}" Padding="20,16">
+                        <Grid>
+                            <StackPanel Spacing="8">
+                                <TextBlock Text="Ctrl+Alt+Space"
+                                          FontSize="16"
+                                          FontWeight="SemiBold"/>
+                                <TextBlock Text="Alternative shortcut"
+                                          FontSize="13"
+                                          Foreground="{StaticResource OnbInkMutedBrush}"/>
+                            </StackPanel>
+
+                        </Grid>
+                    </Border>
+                </RadioButton>
+
+                <!-- Ctrl+Shift+Space -->
+                <RadioButton x:Name="CtrlShiftOption" GroupName="Shortcut" Checked="OnShortcutChecked" Style="{StaticResource OnbRadioButton}">
+                    <Border Style="{StaticResource OnbCard}" Padding="20,16">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Ctrl+Shift+Space"
+                                      FontSize="16"
+                                      FontWeight="SemiBold"/>
+                            <TextBlock Text="Alternative option"
+                                      FontSize="13"
+                                      Foreground="{StaticResource OnbInkMutedBrush}"/>
+                        </StackPanel>
+                    </Border>
+                </RadioButton>
+
+                <!-- Win+Alt+Space -->
+                <RadioButton x:Name="WinAltOption" GroupName="Shortcut" IsChecked="True" Checked="OnShortcutChecked" Style="{StaticResource OnbRadioButton}">
+                    <Border Style="{StaticResource OnbCard}" Padding="20,16">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Win+Alt+Space"
+                                      FontSize="16"
+                                      FontWeight="SemiBold"/>
+                            <TextBlock Text="Recommended · press to test"
+                                      FontSize="13"
+                                      Foreground="{StaticResource OnbInkMutedBrush}"/>
+                        </StackPanel>
+                    </Border>
+                </RadioButton>
+
+            </StackPanel>
+
+            <!-- Info -->
+            <TextBlock Text="You can change this later in Settings"
+                      FontSize="12"
+                      Foreground="{StaticResource OnbInkMutedBrush}"
+                      TextAlignment="Center"/>
+
+            <!-- Next Button -->
+            <TextBlock x:Name="ShortcutStatusText" Text="" TextWrapping="Wrap" Foreground="{StaticResource OnbInkMutedBrush}" TextAlignment="Center"/>
+            <Button x:Name="ContinueButton" Content="Continue" IsEnabled="False"
+                    Style="{StaticResource OnbPrimaryButton}"
+                    Click="OnNextClick"
+                    Margin="0,8,0,0"/>
+
+        </StackPanel>
+    </Grid>
+    </ScrollViewer>
+</Page>

@@ -1,0 +1,111 @@
+<Page
+    x:Class="VoiceLab.App.Views.Onboarding.PersonalizeStepPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      FontFamily="{StaticResource OnbFontFamily}"
+      Background="{StaticResource OnbBgBrush}">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <Grid Padding="40">
+        <StackPanel
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            MaxWidth="500"
+            Spacing="32">
+
+            <!-- Title -->
+            <TextBlock Text="Personalize Your Experience"
+                       Style="{StaticResource OnbTitle}"/>
+
+            <!-- Subtitle -->
+            <TextBlock Text="Customize how VoiceLab works for you"
+                       Style="{StaticResource OnbSubtitle}"/>
+
+            <!-- Options -->
+            <StackPanel Spacing="16">
+                <Border Style="{StaticResource OnbCard}">
+                    <StackPanel Spacing="10">
+                        <TextBlock Text="Writing style" FontSize="15" FontWeight="SemiBold"/>
+                        <ComboBox x:Name="WritingStyleSelector" SelectedIndex="0" HorizontalAlignment="Stretch">
+                            <ComboBoxItem Content="Casual" Tag="casual"/>
+                            <ComboBoxItem Content="Formal" Tag="formal"/>
+                            <ComboBoxItem Content="Excited" Tag="excited"/>
+                        </ComboBox>
+                    </StackPanel>
+                </Border>
+
+                <!-- Auto-capitalize -->
+                <Border Style="{StaticResource OnbCard}">
+                    <Grid Padding="20">
+                        <StackPanel>
+                            <TextBlock Text="Auto-capitalize sentences"
+                                      FontSize="15"
+                                      FontWeight="SemiBold"
+                                      Margin="0,0,0,4"/>
+                            <TextBlock Text="Automatically capitalize the first word"
+                                      FontSize="13"
+                                      Foreground="{StaticResource OnbInkMutedBrush}"/>
+                        </StackPanel>
+
+                        <ToggleSwitch x:Name="CapitalizeSwitch" IsOn="True"
+                                     OnContent=""
+                                     OffContent=""
+                                     HorizontalAlignment="Right"
+                                     VerticalAlignment="Center"/>
+                    </Grid>
+                </Border>
+
+                <!-- Auto-punctuation -->
+                <Border Style="{StaticResource OnbCard}">
+                    <Grid Padding="20">
+                        <StackPanel>
+                            <TextBlock Text="Smart punctuation"
+                                      FontSize="15"
+                                      FontWeight="SemiBold"
+                                      Margin="0,0,0,4"/>
+                            <TextBlock Text="Add periods and commas automatically"
+                                      FontSize="13"
+                                      Foreground="{StaticResource OnbInkMutedBrush}"/>
+                        </StackPanel>
+
+                        <ToggleSwitch x:Name="PunctuationSwitch" IsOn="True"
+                                     OnContent=""
+                                     OffContent=""
+                                     HorizontalAlignment="Right"
+                                     VerticalAlignment="Center"/>
+                    </Grid>
+                </Border>
+
+                <!-- Sound feedback -->
+                <Border Style="{StaticResource OnbCard}">
+                    <Grid Padding="20">
+                        <StackPanel>
+                            <TextBlock Text="Sound feedback"
+                                      FontSize="15"
+                                      FontWeight="SemiBold"
+                                      Margin="0,0,0,4"/>
+                            <TextBlock Text="Play sounds when recording starts/stops"
+                                      FontSize="13"
+                                      Foreground="{StaticResource OnbInkMutedBrush}"/>
+                        </StackPanel>
+
+                        <ToggleSwitch x:Name="SoundSwitch" IsOn="False"
+                                     OnContent=""
+                                     OffContent=""
+                                     HorizontalAlignment="Right"
+                                     VerticalAlignment="Center"/>
+                    </Grid>
+                </Border>
+
+            </StackPanel>
+
+            <!-- Next Button -->
+            <Button Content="Continue"
+                    Style="{StaticResource OnbPrimaryButton}"
+                    Click="OnNextClick"
+                    Margin="0,16,0,0"/>
+
+        </StackPanel>
+    </Grid>
+    </ScrollViewer>
+</Page>
