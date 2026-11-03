@@ -1,0 +1,21 @@
+<Page x:Class="VoiceLab.App.Views.Onboarding.LanguageStepPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      FontFamily="{StaticResource OnbFontFamily}"
+      Background="{StaticResource OnbBgBrush}">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+    <Grid Padding="24">
+        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxWidth="580" Spacing="24">
+            <TextBlock Text="Choose your dictation language" Style="{StaticResource OnbTitle}"/>
+            <TextBlock Text="Echo can detect your language automatically, or you can choose one for more consistent results." Style="{StaticResource OnbSubtitle}" TextWrapping="Wrap"/>
+            <StackPanel Spacing="10" Margin="0,14,0,0">
+                <RadioButton x:Name="AutoOption" GroupName="Language" IsChecked="True" Style="{StaticResource OnbRadioButton}" HorizontalAlignment="Stretch"><Border Style="{StaticResource OnbCard}" HorizontalAlignment="Stretch"><TextBlock Text="Automatic detection" FontSize="16"/></Border></RadioButton>
+                <RadioButton x:Name="UzbekOption" GroupName="Language" Style="{StaticResource OnbRadioButton}" HorizontalAlignment="Stretch"><Border Style="{StaticResource OnbCard}" HorizontalAlignment="Stretch"><TextBlock Text="O‘zbekcha" FontSize="16"/></Border></RadioButton>
+                <RadioButton x:Name="EnglishOption" GroupName="Language" Style="{StaticResource OnbRadioButton}" HorizontalAlignment="Stretch"><Border Style="{StaticResource OnbCard}" HorizontalAlignment="Stretch"><TextBlock Text="English" FontSize="16"/></Border></RadioButton>
+                <RadioButton x:Name="RussianOption" GroupName="Language" Style="{StaticResource OnbRadioButton}" HorizontalAlignment="Stretch"><Border Style="{StaticResource OnbCard}" HorizontalAlignment="Stretch"><TextBlock Text="Русский" FontSize="16"/></Border></RadioButton>
+            </StackPanel>
+            <Button Content="Continue" Style="{StaticResource OnbPrimaryButton}" Click="OnNextClick" Margin="0,16,0,0"/>
+        </StackPanel>
+    </Grid>
+    </ScrollViewer>
+</Page>

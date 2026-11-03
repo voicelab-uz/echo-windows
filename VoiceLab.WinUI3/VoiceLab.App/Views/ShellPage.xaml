@@ -1,0 +1,111 @@
+<Page x:Class="VoiceLab.App.Views.ShellPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Background="{StaticResource EchoPageBrush}">
+    <Grid x:Name="ShellGrid" SizeChanged="OnShellSizeChanged">
+        <Grid.ColumnDefinitions><ColumnDefinition x:Name="SidebarColumn" Width="220"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+        <Border Grid.Column="0" Background="{StaticResource EchoCardBrush}"
+                BorderBrush="{StaticResource EchoBorderBrush}" BorderThickness="0,0,1,0">
+            <Grid x:Name="SidebarRootGrid" Padding="12,12,12,14" RowSpacing="12">
+                <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" Spacing="9" Margin="8,4,0,12" VerticalAlignment="Center">
+                    <Image Source="ms-appx:///Assets/echo-icon.png" Width="28" Height="28"/>
+                    <TextBlock x:Name="BrandName" Text="VoiceLab Echo" FontSize="17" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                </StackPanel>
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <StackPanel Spacing="3">
+                        <TextBlock x:Name="WorkspaceHeading" Text="WORKSPACE" FontSize="11" FontWeight="SemiBold" CharacterSpacing="70"
+                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}" Margin="12,8,0,8"/>
+                        <Button x:Name="HomeNav" Tag="Home" Click="OnNavClick" Style="{StaticResource SidebarNavButton}"><StackPanel Orientation="Horizontal" Spacing="12"><Image x:Name="HomeIcon" Source="ms-appx:///Assets/icons/home.svg" Width="18" Height="18"/><TextBlock x:Name="HomeLabel" Text="Home"/></StackPanel></Button>
+                        <Button x:Name="StatisticsNav" Tag="Statistics" Click="OnNavClick" Style="{StaticResource SidebarNavButton}"><StackPanel Orientation="Horizontal" Spacing="12"><Image x:Name="StatisticsIcon" Source="ms-appx:///Assets/icons/statistics.svg" Width="18" Height="18"/><TextBlock x:Name="StatisticsLabel" Text="Statistics"/></StackPanel></Button>
+                        <Button x:Name="HistoryNav" Tag="History" Click="OnNavClick" Style="{StaticResource SidebarNavButton}"><StackPanel Orientation="Horizontal" Spacing="12"><Image x:Name="HistoryIcon" Source="ms-appx:///Assets/icons/history.svg" Width="18" Height="18"/><TextBlock x:Name="HistoryLabel" Text="History"/></StackPanel></Button>
+                        <Button x:Name="VocabularyNav" Tag="Vocabulary" Click="OnNavClick" Style="{StaticResource SidebarNavButton}"><StackPanel Orientation="Horizontal" Spacing="12"><Image x:Name="VocabularyIcon" Source="ms-appx:///Assets/icons/knowledge.svg" Width="18" Height="18"/><TextBlock x:Name="VocabularyLabel" Text="Vocabulary"/></StackPanel></Button>
+                        <Button x:Name="NotesNav" Tag="Notes" Click="OnNavClick" Style="{StaticResource SidebarNavButton}"><StackPanel Orientation="Horizontal" Spacing="12"><Image x:Name="NotesIcon" Source="ms-appx:///Assets/icons/notes.svg" Width="18" Height="18"/><TextBlock x:Name="NotesLabel" Text="Notes"/></StackPanel></Button>
+                        <Button x:Name="UploadNav" Tag="Upload" Click="OnNavClick" Style="{StaticResource SidebarNavButton}"><StackPanel Orientation="Horizontal" Spacing="12"><Image x:Name="UploadIcon" Source="ms-appx:///Assets/icons/upload.svg" Width="18" Height="18"/><TextBlock x:Name="UploadLabel" Text="Upload audio"/></StackPanel></Button>
+                    </StackPanel>
+                </ScrollViewer>
+                <Grid x:Name="AccountRow" Grid.Row="2" ColumnSpacing="4" Padding="0,10,0,0">
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                    <StackPanel x:Name="AccountSection" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center" Margin="6,0,0,0" ToolTipService.ToolTip="Account">
+                        <Border Width="28" Height="28" CornerRadius="14" Background="{ThemeResource SubtleFillColorSecondaryBrush}">
+                            <TextBlock x:Name="AccountInitialText" Text="V" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <TextBlock x:Name="AccountName" Text="VoiceLab account" FontSize="12" FontWeight="SemiBold"
+                                   TextTrimming="CharacterEllipsis" VerticalAlignment="Center" MaxWidth="92"/>
+                    </StackPanel>
+                    <Button x:Name="SettingsNav" Grid.Column="1" Tag="Settings" Click="OnNavClick" Style="{StaticResource SidebarNavButton}"
+                            Padding="6" Width="32" Height="32" AutomationProperties.Name="Settings">
+                        <Image x:Name="SettingsIcon" Source="ms-appx:///Assets/icons/settings.svg" Width="18" Height="18"/>
+                    </Button>
+                    <Button x:Name="SidebarToggleButton" Grid.Column="2" Click="OnSidebarToggleClick" Style="{StaticResource SidebarNavButton}"
+                            Padding="6" Width="32" Height="32" AutomationProperties.Name="Collapse sidebar">
+                        <Image x:Name="SidebarToggleIcon" Source="ms-appx:///Assets/icons/sidebar-open.svg" Width="18" Height="18"/>
+                    </Button>
+                </Grid>
+            </Grid>
+        </Border>
+        <Grid Grid.Column="1" Background="{StaticResource EchoPageBrush}">
+            <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="56"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+            <InfoBar x:Name="HotkeyWarning" IsOpen="False" IsClosable="False" Severity="Warning"
+                     Title="Shortcut unavailable" Message="Another app is using this shortcut. Choose a different one in Settings."/>
+            <Border Grid.Row="1" Background="{StaticResource EchoCardBrush}" BorderBrush="{StaticResource EchoBorderBrush}" BorderThickness="0,0,0,1">
+                <Grid Padding="20,0" ColumnSpacing="10">
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="12">
+                        <TextBlock x:Name="HeaderText" Text="Home" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                        <StackPanel x:Name="RecordingIndicator" Orientation="Horizontal" Spacing="7" Visibility="Collapsed" VerticalAlignment="Center">
+                            <Ellipse Width="7" Height="7" Fill="#DC2626" VerticalAlignment="Center"/>
+                            <TextBlock x:Name="RecordingStatusText" Text="Recording" FontSize="12" TextTrimming="CharacterEllipsis" MaxWidth="280"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <Button x:Name="NotificationsButton" Grid.Column="1" VerticalAlignment="Center" Width="36" Height="36"
+                            Padding="6" Style="{StaticResource SidebarNavButton}" AutomationProperties.Name="Notifications">
+                        <Button.Flyout>
+                            <Flyout x:Name="NotificationsFlyout" Opened="OnNotificationsFlyoutOpened">
+                                <Grid Width="340" Height="420" RowSpacing="10">
+                                    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                                    <Grid ColumnSpacing="8">
+                                        <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                        <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                                            <TextBlock Text="Notifications" FontSize="16" FontWeight="SemiBold"/>
+                                            <TextBlock x:Name="UnreadCountText" Foreground="{StaticResource TextSecondaryBrush}"/>
+                                        </StackPanel>
+                                        <Button x:Name="MarkAllReadButton" Grid.Column="1" Content="Mark all read" Style="{StaticResource SecondaryButton}"
+                                                Click="OnMarkAllReadClick" IsEnabled="False" Padding="8,5"/>
+                                    </Grid>
+                                    <ListView x:Name="NotificationList" Grid.Row="1" IsItemClickEnabled="True" SelectionMode="None"
+                                              ItemClick="OnNotificationItemClick">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Spacing="5" Padding="6,9">
+                                                    <TextBlock Text="{Binding DisplayTitle}" FontWeight="SemiBold" TextWrapping="Wrap" MaxLines="2"/>
+                                                    <TextBlock Text="{Binding Body}" Foreground="{StaticResource TextSecondaryBrush}" TextWrapping="Wrap" MaxLines="3"/>
+                                                    <TextBlock Text="{Binding DisplayDate}" FontSize="11" Foreground="{StaticResource TextSecondaryBrush}"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                    <TextBlock x:Name="InboxStatusText" Grid.Row="2" Text="No notifications yet"
+                                               TextWrapping="Wrap" Foreground="{StaticResource TextSecondaryBrush}" FontSize="12"/>
+                                    <Button x:Name="LoadMoreNotificationsButton" Grid.Row="3" Content="Show more"
+                                            Style="{StaticResource SecondaryButton}" Click="OnLoadMoreNotificationsClick"
+                                            HorizontalAlignment="Stretch" IsEnabled="False"/>
+                                </Grid>
+                            </Flyout>
+                        </Button.Flyout>
+                        <Grid Width="22" Height="22">
+                            <Image x:Name="NotificationsIcon" Source="ms-appx:///Assets/icons/notifications.svg" Width="19" Height="19"/>
+                            <Ellipse x:Name="UnreadDot" Width="7" Height="7" Fill="{StaticResource EchoAccentBrush}"
+                                     HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="Collapsed"/>
+                        </Grid>
+                    </Button>
+                    <Button x:Name="RetryButton" Grid.Column="2" Content="Retry" Visibility="Collapsed" VerticalAlignment="Center"
+                            Style="{StaticResource SecondaryButton}" Padding="10,8" Click="OnRetryClick"
+                            AutomationProperties.Name="Retry failed dictation"/>
+                    <Button x:Name="RecordButton" Grid.Column="3" VerticalAlignment="Center" Style="{StaticResource DictationButtonStyle}" Padding="12,8" Click="OnRecordClick">
+                        <StackPanel Orientation="Horizontal" Spacing="8"><Image x:Name="RecordIcon" Source="ms-appx:///Assets/icons/mic.dark.svg" Width="16" Height="16"/><TextBlock x:Name="RecordButtonText" Text="Start dictation"/></StackPanel>
+                    </Button>
+                </Grid>
+            </Border>
+            <Frame x:Name="ContentFrame" Grid.Row="2"/>
+        </Grid>
+    </Grid>
+</Page>

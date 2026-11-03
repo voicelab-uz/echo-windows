@@ -1,107 +1,32 @@
-# Voice Lab Echo - Windows Edition
+# VoiceLab Echo for Windows
 
-A native Windows voice dictation application built with .NET 8 and WPF.
+The Mac reference source and porting guidance are in [MacApp](MacApp/), [AGENTS.md](AGENTS.md), and [MAC_TO_WINDOWS.md](MAC_TO_WINDOWS.md).
 
-## Features
+The active Windows application is the native WinUI 3 project in `VoiceLab.WinUI3/`. Open `VoiceLabEcho.sln` in Visual Studio, or use `BUILD_AND_RUN.bat` to publish and start the x64 build. The older WPF solution is retained as `VoiceLabEcho.LegacyWpf.sln` for reference; its `VoiceLabEcho.App.exe` is not the current application.
 
-- 🎤 Voice recording and cloud transcription
-- 🔐 Secure authentication with OAuth 2.0
-- 📝 Encrypted local notes storage
-- 📚 Custom vocabulary and text snippets
-- 📊 Usage statistics and history
-- ⌨️ Global keyboard shortcuts
-- 🌓 Light/Dark theme support
-- 🔄 Cloud sync for notes and history
+## Build and run
 
-## Requirements
+Use the .NET 8 SDK on Windows:
 
-- Windows 10/11
-- .NET 8 Runtime
-- Microphone access
-- Internet connection for transcription
-
-## Installation
-
-1. Download the latest release from the releases page
-2. Run the installer or extract the portable version
-3. Launch VoiceLabEcho.App.exe
-4. Complete the onboarding process
-
-## Building from Source
-
-### Prerequisites
-- Visual Studio 2022 or JetBrains Rider
-- .NET 8 SDK
-
-### Build Steps
-```bash
-git clone <repository-url>
-cd VoiceLabEcho.Windows
-dotnet restore
-dotnet build
-dotnet run --project VoiceLabEcho.App
+```powershell
+dotnet publish VoiceLab.WinUI3/VoiceLab.App/VoiceLab.App.csproj -c Release -r win-x64 -p:Platform=x64 --self-contained true -p:WindowsAppSDKSelfContained=true -p:PublishSingleFile=false -o artifacts/VoiceLab-Echo-win-x64
+./artifacts/VoiceLab-Echo-win-x64/VoiceLab.Echo.exe
 ```
 
-## Architecture
+Keep all published files beside `VoiceLab.Echo.exe`. The build requires microphone access and an internet connection for account sign-in and transcription. The default global dictation shortcut is Win+Alt+Space; choose another in Settings if Windows or another app has claimed it.
 
-The application is structured into multiple projects:
+The app includes onboarding, browser sign-in, microphone capture, account transcription, device and account History, an always-on-top recording control, clipboard insertion, Home, Statistics, Notes, Vocabulary, Snippets, audio Upload, notifications, theme settings, and tray behavior. The current source and API details are in [the WinUI README](VoiceLab.WinUI3/README.md). The [release verification checklist](VoiceLab.WinUI3/RELEASE_VERIFICATION.md) identifies what still needs interactive testing.
 
-- **VoiceLabEcho.App** - WPF UI layer with XAML views and ViewModels
-- **VoiceLabEcho.Core** - Business logic and domain models
-- **VoiceLabEcho.Infrastructure** - External integrations (API, audio, storage)
-- **VoiceLabEcho.Tests** - Unit and integration tests
+## Current verification state
 
-## Configuration
+The WinUI application builds with zero warnings and errors, and the service smoke tests pass. On November 3, 2026, the development PC owner authorized disabling Smart App Control; the published app and the per-user installer were then launched successfully. Runtime checks covered onboarding shortcut navigation, Vocabulary/Snippets tab switching, History layout, and inline Copy confirmation. A retained dictation was recovered into encrypted History after fixing UTF-8 BOM migration. The full interactive acceptance checklist still requires completion. Unsigned builds may be blocked on other PCs; Windows auto-update also requires a signed Windows release channel.
 
-Application data is stored in:
-- `%APPDATA%\VoiceLabEcho\` - User data and settings
-- Windows Credential Manager - Secure credential storage
+## Installer
 
-## Usage
+After publishing, use Inno Setup 6 to build a single installer EXE:
 
-1. **Sign In**: Authenticate with your VoiceLab account
-2. **Record**: Press the global shortcut (default: Ctrl+Alt+Space) or click Record
-3. **Transcribe**: Audio is automatically sent for transcription
-4. **Insert**: Text is inserted into your active application
-
-## Keyboard Shortcuts
-
-- `Ctrl+Alt+Space` - Start/Stop recording (configurable)
-- `Ctrl+N` - New note
-- `Ctrl+,` - Open settings
-- `Esc` - Cancel recording
-
-## Development
-
-### Project Structure
-```
-VoiceLabEcho.Windows/
-├── VoiceLabEcho.App/              # WPF Application
-├── VoiceLabEcho.Core/             # Business Logic
-├── VoiceLabEcho.Infrastructure/   # External Services
-└── VoiceLabEcho.Tests/            # Tests
+```powershell
+ISCC.exe /DPackageDir="C:\path\to\published-app" /DInstallerOutputDir="C:\path\to\output" VoiceLab.WinUI3/installer/VoiceLab-Echo.iss
 ```
 
-### Key Technologies
-- WPF with XAML for UI
-- MVVM pattern with CommunityToolkit.Mvvm
-- NAudio for audio recording
-- HttpClient for API communication
-- AES-GCM for encryption
-
-## API Endpoints
-
-The application communicates with VoiceLab API:
-- Base URL: `https://api.voicelab.uz`
-- Authentication: OAuth 2.0 with PKCE
-- Transcription: `/v1/desktop/stt`
-- History: `/v1/desktop/transcriptions`
-- Notes: `/v1/desktop/notes`
-
-## License
-
-[Your License Here]
-
-## Support
-
-For issues and feature requests, please use the GitHub issue tracker.
+The installer includes the published runtime and assets, a Start menu shortcut, and an uninstaller. Signing remains a separate release step.

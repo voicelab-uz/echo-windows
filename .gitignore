@@ -147,3 +147,8 @@ _ReSharper*/
 *.lnk
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
+
+# Local assistant sessions and editor backups
+.claude/
+.continues-handoff.md
+*.bak

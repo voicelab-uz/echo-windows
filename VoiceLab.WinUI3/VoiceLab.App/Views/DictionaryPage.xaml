@@ -1,0 +1,9 @@
+<Page x:Class="VoiceLab.App.Views.DictionaryPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="{StaticResource BackgroundBrush}">
+    <Pivot x:Name="DictionaryTabs" Margin="12,8,12,0">
+        <PivotItem Header="Vocabulary"><Frame x:Name="VocabularyFrame"/></PivotItem>
+        <PivotItem Header="Snippets"><Frame x:Name="SnippetsFrame"/></PivotItem>
+    </Pivot>
+</Page>

@@ -1,5 +1,7 @@
 # Voice Lab Echo - Windows Build Instructions
 
+> This document describes the retired WPF preview. Build the current WinUI 3 app with `BUILD_AND_RUN.bat` or follow [README.md](README.md). Open `VoiceLabEcho.sln` for the WinUI solution; `VoiceLabEcho.LegacyWpf.sln` retains the previous project.
+
 ## Prerequisites
 
 Before building the application, ensure you have the following installed on your Windows machine:

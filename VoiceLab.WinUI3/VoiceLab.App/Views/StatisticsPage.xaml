@@ -1,0 +1,115 @@
+<Page x:Class="VoiceLab.App.Views.StatisticsPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Background="{StaticResource EchoPageBrush}">
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" SizeChanged="OnStatisticsScrollSizeChanged">
+        <StackPanel x:Name="StatisticsContent" Padding="28" Spacing="22" MaxWidth="1280" HorizontalAlignment="Left">
+            <StackPanel Spacing="5">
+                <TextBlock Text="Statistics" FontSize="28" FontWeight="SemiBold"/>
+                <TextBlock x:Name="DataSourceText" Text="Local history · six months" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+            </StackPanel>
+
+            <Grid x:Name="StatsGrid" ColumnSpacing="14" RowSpacing="14" SizeChanged="OnStatsGridSizeChanged">
+                <Border x:Name="SpeedCard" Style="{StaticResource ModernCard}">
+                    <StackPanel Spacing="10">
+                        <TextBlock Text="WORDS PER MINUTE" FontSize="11" FontWeight="SemiBold" CharacterSpacing="70" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                        <Grid Height="90" Width="160" HorizontalAlignment="Left">
+                            <Canvas x:Name="SpeedArcCanvas" Width="160" Height="90"/>
+                            <TextBlock x:Name="SpeedValue" Text="—" FontSize="28" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,7"/>
+                        </Grid>
+                        <Grid Width="160" HorizontalAlignment="Left">
+                            <TextBlock Text="0" FontSize="10" Foreground="{ThemeResource TextFillColorSecondaryBrush}" HorizontalAlignment="Left"/>
+                            <TextBlock Text="200+" FontSize="10" Foreground="{ThemeResource TextFillColorSecondaryBrush}" HorizontalAlignment="Right"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                <Border x:Name="RecordingsCard" Style="{StaticResource ModernCard}">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="RECORDINGS" FontSize="11" FontWeight="SemiBold" CharacterSpacing="70" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                        <TextBlock x:Name="TranscriptionCount" Text="0" FontSize="32" FontWeight="SemiBold"/>
+                        <Border BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="0,1,0,0" Margin="0,6,0,0"/>
+                        <TextBlock x:Name="ActiveDaysText" Text="0 active days" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                    </StackPanel>
+                </Border>
+                <Border x:Name="WordsCard" Style="{StaticResource ModernCard}">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="WORDS DICTATED" FontSize="11" FontWeight="SemiBold" CharacterSpacing="70" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                        <TextBlock x:Name="WordCount" Text="0" FontSize="32" FontWeight="SemiBold"/>
+                        <Grid x:Name="MiniWeekGrid" Height="78" ColumnSpacing="6"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <Grid x:Name="SavingsGrid" ColumnSpacing="14" RowSpacing="14" SizeChanged="OnSavingsGridSizeChanged">
+                <Border x:Name="TimeCard" Style="{StaticResource ModernCard}">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="TIME SAVED" FontSize="11" FontWeight="SemiBold" CharacterSpacing="70" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                        <TextBlock x:Name="TimeSaved" Text="0 min" FontSize="27" FontWeight="SemiBold"/>
+                        <StackPanel Orientation="Horizontal" Spacing="7">
+                            <TextBlock Text="Typing speed" VerticalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                            <NumberBox x:Name="TypingSpeedBox" Minimum="10" Maximum="200" SpinButtonPlacementMode="Compact" Width="92" ValueChanged="OnTypingSpeedChanged"/>
+                            <TextBlock Text="WPM" VerticalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                <Border x:Name="TodayCard" Style="{StaticResource ModernCard}">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="WORDS TODAY" FontSize="11" FontWeight="SemiBold" CharacterSpacing="70" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                        <TextBlock x:Name="TodayWords" Text="0" FontSize="27" FontWeight="SemiBold"/>
+                        <TextBlock x:Name="TodayDetail" Text="0 recordings today" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Border>
+                <Border x:Name="AverageCard" Style="{StaticResource ModernCard}">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="AVERAGE LENGTH" FontSize="11" FontWeight="SemiBold" CharacterSpacing="70" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                        <TextBlock x:Name="AverageWords" Text="—" FontSize="27" FontWeight="SemiBold"/>
+                        <TextBlock Text="Words per recording" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <Grid x:Name="InsightsGrid" ColumnSpacing="14" RowSpacing="14" SizeChanged="OnInsightsGridSizeChanged">
+                <Border x:Name="UsageCard" Style="{StaticResource ModernCard}">
+                    <StackPanel Spacing="14">
+                        <TextBlock Text="Desktop usage" FontSize="20" FontWeight="SemiBold"/>
+                        <TextBlock x:Name="UsageSummaryText" Text="Applications used for dictation" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap"/>
+                        <StackPanel x:Name="UsageCategories" Spacing="10"/>
+                    </StackPanel>
+                </Border>
+                <Border x:Name="StreakCard" Style="{StaticResource ModernCard}">
+                    <StackPanel Spacing="14">
+                        <TextBlock x:Name="StreakText" Text="0 day streak" FontSize="20" FontWeight="SemiBold"/>
+                        <TextBlock x:Name="LongestStreakText" Text="Longest: 0 days" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                        <Grid x:Name="HeatmapGrid" Height="126" ColumnSpacing="2" RowSpacing="2"/>
+                        <Grid HorizontalAlignment="Stretch">
+                            <TextBlock Text="Less activity" FontSize="11" Foreground="{ThemeResource TextFillColorSecondaryBrush}" HorizontalAlignment="Left"/>
+                            <TextBlock Text="More activity" FontSize="11" Foreground="{ThemeResource TextFillColorSecondaryBrush}" HorizontalAlignment="Right"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <Border x:Name="DeviceCard" Style="{StaticResource ModernCard}">
+                <StackPanel Spacing="10">
+                    <TextBlock Text="Devices" FontSize="18" FontWeight="SemiBold"/>
+                    <StackPanel Orientation="Horizontal" Spacing="30">
+                        <StackPanel Spacing="4"><TextBlock Text="DESKTOP" FontSize="11" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/><TextBlock x:Name="DesktopCount" Text="—" FontSize="25" FontWeight="SemiBold"/></StackPanel>
+                        <StackPanel Spacing="4"><TextBlock Text="IPHONE" FontSize="11" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/><TextBlock x:Name="MobileCount" Text="—" FontSize="25" FontWeight="SemiBold"/></StackPanel>
+                    </StackPanel>
+                    <TextBlock x:Name="DeviceNote" Text="Device split is available when account statistics load." FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap"/>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource ModernCard}">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="VoiceLab Cloud usage" FontSize="18" FontWeight="SemiBold"/>
+                    <TextBlock x:Name="CloudPlanText" Text="Loading account usage…" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap"/>
+                    <ProgressBar x:Name="CloudUsageProgress" Minimum="0" Maximum="100" Value="0"/>
+                    <TextBlock x:Name="CloudRemainingText" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                </StackPanel>
+            </Border>
+            <TextBlock Text="Time saved compares your recorded speaking time with typing at the speed above. Statistics cover six months of retained history."
+                       FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap"/>
+            <TextBlock x:Name="EmptyText" Text="Your statistics will appear after your first transcription."
+                       Foreground="{ThemeResource TextFillColorSecondaryBrush}" Visibility="Collapsed" TextWrapping="Wrap"/>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
