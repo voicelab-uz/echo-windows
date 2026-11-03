@@ -12,3 +12,13 @@ python3 build.py
 
 `build.py` rebuilds every folder except `HANDOFF.md`, `README.md` and `Tools/`.
 `traymark.swift` is a direct port of `Voicelab/Shared/MenuBarIcon.swift`.
+
+## sync-mac-source.sh
+
+Replaces `MacApp/` with an exact copy of the Mac repo's tracked files and writes
+`MacApp/SNAPSHOT.md` with the commit:
+
+```sh
+DesignHandoff/Tools/sync-mac-source.sh "/path/to/echo"          # current HEAD
+DesignHandoff/Tools/sync-mac-source.sh "/path/to/echo" origin/main
+```

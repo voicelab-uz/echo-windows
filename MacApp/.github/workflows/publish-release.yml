@@ -1,0 +1,95 @@
+name: Publish release
+run-name: Publish ${{ inputs.confirm_release_tag }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      preparation_run_id:
+        description: 'Successful Prepare release Actions run ID'
+        required: true
+        type: string
+      confirm_release_tag:
+        description: 'Exact tested tag, e.g. stable-1.0.1-116. This publishes the update.'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: echo-release-publication
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main'
+    runs-on: xcode-27
+    timeout-minutes: 30
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_27.1.app/Contents/Developer
+      PYTHONDONTWRITEBYTECODE: '1'
+      PREPARATION_RUN_ID: ${{ inputs.preparation_run_id }}
+      CONFIRM_RELEASE_TAG: ${{ inputs.confirm_release_tag }}
+      ECHO_TEAM_ID: FWCSVFT76D
+      ECHO_SPARKLE_PUBLIC_KEY: XzFmEWjxWA+1rQc1mHl1tokbcYSWaSJMcCvFEOLwLHc=
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.13'
+      - name: Verify preparation run provenance
+        id: preparation
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/ci_release.py resolve "$PREPARATION_RUN_ID"
+      - name: Download the exact tested candidate
+        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
+        with:
+          name: ${{ steps.preparation.outputs.artifact }}
+          path: ${{ runner.temp }}/echo-candidate
+          run-id: ${{ inputs.preparation_run_id }}
+          github-token: ${{ github.token }}
+      - name: Verify candidate signatures, provenance and confirmation
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/ci_release.py validate-candidate "$RUNNER_TEMP/echo-candidate" "$PREPARATION_RUN_ID" "$CONFIRM_RELEASE_TAG"
+      - name: Mint scoped release-repository access
+        id: release-token
+        uses: actions/create-github-app-token@fee1f7d63c2ff003460e3d139729b119787bc349 # v2
+        with:
+          app-id: ${{ vars.ECHO_RELEASE_APP_ID }}
+          private-key: ${{ secrets.ECHO_RELEASE_APP_PRIVATE_KEY }}
+          owner: voicelab-uz
+          repositories: echo-releases
+          permission-contents: write
+      - name: Publish immutable release, verify feed and apply retention
+        env:
+          GH_TOKEN: ${{ steps.release-token.outputs.token }}
+        run: |
+          python3 scripts/ci_release.py verify-publisher
+          for attempt in 1 2 3 4 5 6 7 8; do
+            status=0
+            python3 scripts/publish_github.py "$RUNNER_TEMP/echo-candidate/publication" --promote || status=$?
+            if [ "$status" -eq 0 ]; then exit 0; fi
+            if [ "$status" -ne 2 ]; then exit "$status"; fi
+            sleep 20
+          done
+          echo 'Published feed is still propagating. Retry this same Publish release run; do not rebuild.'
+          exit 2
+      - name: Verify the public download pages
+        run: python3 scripts/ci_release.py verify-site "$RUNNER_TEMP/echo-candidate/publication"
+      - name: Keep publication and retention audit
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: echo-publication-audit-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/echo-candidate/candidate.json
+            ${{ runner.temp }}/echo-candidate/publication/publication.json
+            ${{ runner.temp }}/echo-candidate/publication/retention-plan.json
+          retention-days: 30
+          if-no-files-found: ignore

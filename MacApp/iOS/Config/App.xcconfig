@@ -1,0 +1,2 @@
+// Build settings for the Echo iOS app target.
+// User authentication supplies short-lived API tokens; no VoiceLab API key is bundled.
