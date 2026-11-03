@@ -465,10 +465,15 @@ sealed class FakeSttHandler : HttpMessageHandler
         if (request.Method != HttpMethod.Post || request.RequestUri!.AbsolutePath != "/v1/desktop/stt" ||
             request.Headers.Authorization?.Parameter != "test-access-token")
             throw new Exception("Desktop STT request path, method, or authorization was wrong.");
-        var body = await request.Content!.ReadAsStringAsync(cancellationToken);
-        if (!body.Contains("name=\"language\"", StringComparison.Ordinal) ||
-            !body.Contains("\r\n\r\nauto\r\n", StringComparison.Ordinal) ||
-            !body.Contains("name=\"audio\"", StringComparison.Ordinal))
+        if (request.Content is not MultipartFormDataContent form)
+            throw new Exception("Desktop STT did not send multipart form data.");
+        var languagePart = form.FirstOrDefault(part =>
+            part.Headers.ContentDisposition?.Name?.Trim('"') == "language");
+        var audioPart = form.FirstOrDefault(part =>
+            part.Headers.ContentDisposition?.Name?.Trim('"') == "audio");
+        if (languagePart is null || audioPart is null ||
+            await languagePart.ReadAsStringAsync(cancellationToken) != "auto" ||
+            string.IsNullOrWhiteSpace(audioPart.Headers.ContentDisposition?.FileName?.Trim('"')))
             throw new Exception("Desktop STT multipart request did not match the Mac API contract.");
         if (RequestCount == 1)
             return new HttpResponseMessage(System.Net.HttpStatusCode.TooManyRequests)
