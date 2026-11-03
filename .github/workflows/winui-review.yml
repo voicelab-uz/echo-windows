@@ -26,6 +26,35 @@ jobs:
         run: dotnet run --project VoiceLab.WinUI3/VoiceLab.SmokeTests/VoiceLab.SmokeTests.csproj -c Release --no-restore
       - name: Publish unsigned x64 review build
         run: dotnet publish VoiceLab.WinUI3/VoiceLab.App/VoiceLab.App.csproj -c Release -r win-x64 -p:Platform=x64 --self-contained true -p:WindowsAppSDKSelfContained=true -p:PublishSingleFile=false --no-restore -o artifacts/VoiceLab-Echo-win-x64
+      - name: Probe WinUI startup in runner session
+        continue-on-error: true
+        shell: pwsh
+        run: |
+          $startupLog = Join-Path $env:TEMP 'VoiceLabEchoStartup.log'
+          Remove-Item -LiteralPath $startupLog -ErrorAction SilentlyContinue
+          $appDirectory = (Resolve-Path 'artifacts/VoiceLab-Echo-win-x64').Path
+          $appPath = Join-Path $appDirectory 'VoiceLab.Echo.exe'
+          $appProcess = $null
+          try {
+            $appProcess = Start-Process -FilePath $appPath -WorkingDirectory $appDirectory -PassThru -ErrorAction Stop
+            Start-Sleep -Seconds 12
+            if (Test-Path -LiteralPath $startupLog) {
+              Get-Content -LiteralPath $startupLog | Write-Output
+            }
+            if ($appProcess.HasExited) {
+              throw "Echo exited during startup with code $($appProcess.ExitCode)."
+            }
+            if (-not (Test-Path -LiteralPath $startupLog) -or
+                -not (Select-String -LiteralPath $startupLog -Pattern 'Main window activated' -Quiet)) {
+              throw 'Echo did not reach main-window activation in this runner session.'
+            }
+            Write-Output 'Echo reached main-window activation and remained running.'
+          }
+          finally {
+            if ($appProcess -and -not $appProcess.HasExited) {
+              Stop-Process -Id $appProcess.Id -Force
+            }
+          }
       - uses: actions/upload-artifact@v4
         with:
           name: VoiceLab-Echo-win-x64-unsigned
