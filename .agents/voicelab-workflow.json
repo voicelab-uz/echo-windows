@@ -1,0 +1,12 @@
+{
+  "core_sha256": "8fb682f33bf7a43cbdd889f7f71fb6849d3da83dca1225e9b81403425d9ef703",
+  "files": {
+    ".agents/skills/voicelab-diff-review/SKILL.md": "fe24ab8f86e7588d7cdc856bbf394ba61e646754383f09c1391378f6be9bb856",
+    ".agents/skills/voicelab-team-agents/SKILL.md": "fd36b0e4c70bbd5beb32912c55fb1f018759a21b590e354f6d8b759958de45d9",
+    ".agents/skills/voicelab-team-agents/references/team-agents.md": "a7e6b6cd650e52c14e03eaaebf3184dbd012c685a2663144d08c1b209a1022a0",
+    ".claude/skills/voicelab-diff-review/SKILL.md": "fe24ab8f86e7588d7cdc856bbf394ba61e646754383f09c1391378f6be9bb856",
+    ".claude/skills/voicelab-team-agents/SKILL.md": "fd36b0e4c70bbd5beb32912c55fb1f018759a21b590e354f6d8b759958de45d9",
+    ".claude/skills/voicelab-team-agents/references/team-agents.md": "a7e6b6cd650e52c14e03eaaebf3184dbd012c685a2663144d08c1b209a1022a0"
+  },
+  "version": 1
+}
